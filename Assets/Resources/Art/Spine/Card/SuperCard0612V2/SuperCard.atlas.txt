@@ -1,0 +1,90 @@
+
+SuperCard.png
+size: 4601, 970
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+1r
+  rotate: true
+  xy: 1264, 48
+  size: 136, 215
+  orig: 139, 217
+  offset: 2, 1
+  index: -1
+2_2
+  rotate: true
+  xy: 2, 134
+  size: 308, 454
+  orig: 310, 456
+  offset: 1, 1
+  index: -1
+2e
+  rotate: true
+  xy: 1481, 25
+  size: 97, 150
+  orig: 100, 153
+  offset: 1, 2
+  index: -1
+3w
+  rotate: false
+  xy: 1481, 283
+  size: 156, 159
+  orig: 158, 161
+  offset: 1, 1
+  index: -1
+4a
+  rotate: true
+  xy: 1633, 23
+  size: 130, 155
+  orig: 132, 158
+  offset: 1, 2
+  index: -1
+5r
+  rotate: true
+  xy: 1615, 155
+  size: 126, 162
+  orig: 128, 164
+  offset: 1, 1
+  index: -1
+6d
+  rotate: false
+  xy: 1481, 124
+  size: 132, 157
+  orig: 134, 160
+  offset: 1, 2
+  index: -1
+black_1
+  rotate: false
+  xy: 2, 444
+  size: 3554, 524
+  orig: 3874, 526
+  offset: 112, 1
+  index: -1
+lizi2
+  rotate: true
+  xy: 2, 9
+  size: 36, 484
+  orig: 44, 485
+  offset: 4, 0
+  index: -1
+pop
+  rotate: false
+  xy: 3558, 47
+  size: 1041, 921
+  orig: 1043, 923
+  offset: 1, 1
+  index: -1
+supercard
+  rotate: false
+  xy: 488, 2
+  size: 774, 440
+  orig: 776, 442
+  offset: 1, 1
+  index: -1
+x
+  rotate: false
+  xy: 1264, 186
+  size: 215, 256
+  orig: 217, 258
+  offset: 1, 1
+  index: -1

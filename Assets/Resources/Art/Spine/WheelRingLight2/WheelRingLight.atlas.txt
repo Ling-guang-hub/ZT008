@@ -1,0 +1,55 @@
+
+WheelRingLight.png
+size: 1015, 519
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+LightBG_yellow
+  rotate: true
+  xy: 653, 31
+  size: 486, 360
+  orig: 540, 475
+  offset: 24, 81
+  index: -1
+Ring_1
+  rotate: true
+  xy: 2, 56
+  size: 461, 649
+  orig: 467, 656
+  offset: 3, 4
+  index: -1
+fx_b
+  rotate: false
+  xy: 2, 2
+  size: 52, 52
+  orig: 64, 64
+  offset: 5, 6
+  index: -1
+fx_b_blue
+  rotate: false
+  xy: 56, 14
+  size: 41, 40
+  orig: 64, 64
+  offset: 11, 12
+  index: -1
+fx_b_grenn
+  rotate: false
+  xy: 141, 14
+  size: 39, 40
+  orig: 64, 64
+  offset: 12, 12
+  index: -1
+fx_b_yellow
+  rotate: false
+  xy: 182, 14
+  size: 39, 40
+  orig: 64, 64
+  offset: 12, 12
+  index: -1
+glow2
+  rotate: false
+  xy: 99, 14
+  size: 40, 40
+  orig: 100, 100
+  offset: 30, 30
+  index: -1

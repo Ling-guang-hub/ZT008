@@ -1,0 +1,104 @@
+
+TitleLose.png
+size: 1859,926
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1L
+  rotate: true
+  xy: 242, 13
+  size: 144, 237
+  orig: 147, 240
+  offset: 1, 2
+  index: -1
+2O
+  rotate: false
+  xy: 1442, 60
+  size: 160, 237
+  orig: 164, 240
+  offset: 2, 2
+  index: -1
+3S
+  rotate: true
+  xy: 481, 15
+  size: 142, 237
+  orig: 146, 239
+  offset: 2, 1
+  index: -1
+4E
+  rotate: true
+  xy: 2, 2
+  size: 155, 238
+  orig: 159, 241
+  offset: 2, 2
+  index: -1
+BlueBG_1
+  rotate: false
+  xy: 2, 159
+  size: 1056, 765
+  orig: 1058, 768
+  offset: 1, 2
+  index: -1
+Card_1
+  rotate: true
+  xy: 1060, 491
+  size: 433, 488
+  orig: 433, 489
+  offset: 0, 1
+  index: -1
+Card_2
+  rotate: true
+  xy: 1060, 15
+  size: 474, 380
+  orig: 474, 380
+  offset: 0, 0
+  index: -1
+TitleBG
+  rotate: true
+  xy: 1550, 299
+  size: 625, 307
+  orig: 628, 310
+  offset: 2, 2
+  index: -1
+piece_1
+  rotate: false
+  xy: 978, 89
+  size: 55, 68
+  orig: 57, 70
+  offset: 1, 1
+  index: -1
+piece_2
+  rotate: false
+  xy: 720, 46
+  size: 111, 111
+  orig: 113, 113
+  offset: 1, 1
+  index: -1
+piece_3
+  rotate: true
+  xy: 921, 66
+  size: 91, 55
+  orig: 93, 57
+  offset: 1, 1
+  index: -1
+piece_4
+  rotate: false
+  xy: 833, 59
+  size: 86, 98
+  orig: 88, 100
+  offset: 1, 1
+  index: -1
+piece_5
+  rotate: true
+  xy: 833, 5
+  size: 52, 112
+  orig: 54, 114
+  offset: 1, 1
+  index: -1
+piece_6
+  rotate: true
+  xy: 947, 7
+  size: 57, 80
+  orig: 59, 82
+  offset: 1, 1
+  index: -1

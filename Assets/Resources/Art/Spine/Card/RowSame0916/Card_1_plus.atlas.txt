@@ -1,0 +1,76 @@
+
+Card_1_plus.png
+size: 4727,2254
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+1
+  rotate: false
+  xy: 2, 28
+  size: 910, 236
+  orig: 1085, 1404
+  offset: 69, 982
+  index: -1
+2
+  rotate: true
+  xy: 3293, 2
+  size: 961, 1265
+  orig: 1085, 1404
+  offset: 52, 58
+  index: -1
+3
+  rotate: false
+  xy: 3764, 987
+  size: 961, 1265
+  orig: 1085, 1404
+  offset: 53, 59
+  index: -1
+FLASH
+  rotate: true
+  xy: 914, 61
+  size: 203, 707
+  orig: 209, 709
+  offset: 3, 1
+  index: -1
+GradientRing_Card_1
+  rotate: false
+  xy: 2774, 965
+  size: 988, 1287
+  orig: 1655, 2142
+  offset: 330, 410
+  index: -1
+GradientRing_in_1
+  rotate: true
+  xy: 1615, 287
+  size: 538, 661
+  orig: 540, 664
+  offset: 1, 1
+  index: -1
+GradientRing_in_2
+  rotate: true
+  xy: 2278, 2
+  size: 823, 1013
+  orig: 825, 1015
+  offset: 1, 1
+  index: -1
+GradientRing_in_3
+  rotate: false
+  xy: 1615, 827
+  size: 1157, 1425
+  orig: 1160, 1428
+  offset: 1, 1
+  index: -1
+GradientRing_in_4
+  rotate: false
+  xy: 2, 266
+  size: 1611, 1986
+  orig: 1613, 1988
+  offset: 1, 1
+  index: -1
+text
+  rotate: false
+  xy: 914, 7
+  size: 876, 52
+  orig: 876, 52
+  offset: 0, 0
+  index: -1

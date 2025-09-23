@@ -1,0 +1,97 @@
+
+Card_3_Plus.png
+size: 4609,2486
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Card_3_TitleRing
+  rotate: true
+  xy: 3816, 2
+  size: 804, 338
+  orig: 809, 343
+  offset: 1, 1
+  index: -1
+Card_3_Title_1
+  rotate: false
+  xy: 893, 271
+  size: 717, 225
+  orig: 724, 233
+  offset: 3, 4
+  index: -1
+Card_3_Title_2
+  rotate: true
+  xy: 4156, 46
+  size: 760, 187
+  orig: 766, 193
+  offset: 3, 3
+  index: -1
+GradientRing_Card_3
+  rotate: false
+  xy: 2774, 1254
+  size: 1008, 1230
+  orig: 1038, 1396
+  offset: 26, 45
+  index: -1
+GradientRing_in_1
+  rotate: false
+  xy: 3816, 808
+  size: 538, 661
+  orig: 540, 664
+  offset: 1, 1
+  index: -1
+GradientRing_in_2
+  rotate: false
+  xy: 3784, 1471
+  size: 823, 1013
+  orig: 825, 1015
+  offset: 1, 1
+  index: -1
+GradientRing_in_3
+  rotate: false
+  xy: 1615, 1059
+  size: 1157, 1425
+  orig: 1160, 1428
+  offset: 1, 1
+  index: -1
+GradientRing_in_4
+  rotate: false
+  xy: 2, 498
+  size: 1611, 1986
+  orig: 1613, 1988
+  offset: 1, 1
+  index: -1
+card_3_1
+  rotate: false
+  xy: 2, 98
+  size: 889, 398
+  orig: 1031, 1389
+  offset: 121, 820
+  index: -1
+card_3_2
+  rotate: true
+  xy: 1615, 68
+  size: 989, 1208
+  orig: 1021, 1387
+  offset: 31, 56
+  index: -1
+card_3_ring
+  rotate: false
+  xy: 2825, 44
+  size: 989, 1208
+  orig: 1017, 1374
+  offset: 26, 57
+  index: -1
+flash_1
+  rotate: false
+  xy: 4356, 1085
+  size: 147, 384
+  orig: 151, 386
+  offset: 2, 1
+  index: -1
+text
+  rotate: false
+  xy: 2, 44
+  size: 742, 52
+  orig: 742, 52
+  offset: 0, 0
+  index: -1

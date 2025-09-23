@@ -1,0 +1,27 @@
+
+ACHCard_Light_left.png
+size: 1095,388
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+flash_1
+  rotate: false
+  xy: 928, 2
+  size: 165, 384
+  orig: 171, 386
+  offset: 3, 1
+  index: -1
+line_1
+  rotate: false
+  xy: 470, 16
+  size: 456, 370
+  orig: 458, 372
+  offset: 1, 1
+  index: -1
+ring_1
+  rotate: false
+  xy: 2, 4
+  size: 466, 382
+  orig: 470, 384
+  offset: 1, 1
+  index: -1

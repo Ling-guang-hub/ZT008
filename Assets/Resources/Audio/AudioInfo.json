@@ -1,0 +1,118 @@
+{
+  "Button_1": {
+    "name": "Button_1",
+    "volume": 1,
+    "filePath": "Audio/UIMusic/Button_1"
+  },
+  "Button_2": {
+    "name": "Button_2",
+    "volume": 1,
+    "filePath": "Audio/UIMusic/Button_2"
+  },
+  "Scrape": {
+    "name": "Scrape",
+    "volume": 1,
+    "filePath": "Audio/UIMusic/Scrape"
+  },
+  "Win_prize": {
+    "name": "Win_prize",
+    "volume": 0.5,
+    "filePath": "Audio/UIMusic/Win_prize"
+  },
+  "Coin_fly": {
+    "name": "Coin_fly",
+    "volume": 1,
+    "filePath": "Audio/UIMusic/Coin_fly"
+  },
+  "Cash_fly": {
+    "name": "Cash_fly",
+    "volume": 1,
+    "filePath": "Audio/UIMusic/Cash_fly"
+  },
+  "Num_roll": {
+    "name": "Num_roll",
+    "volume": 1,
+    "filePath": "Audio/UIMusic/Num_roll"
+  },
+  "Word_fly": {
+    "name": "Word_fly",
+    "volume": 1,
+    "filePath": "Audio/UIMusic/Word_fly"
+  },
+  "Card_switch": {
+    "name": "Card_switch",
+    "volume": 1,
+    "filePath": "Audio/UIMusic/Card_switch"
+  },
+  "Panel_pop": {
+    "name": "Panel_pop",
+    "volume": 1,
+    "filePath": "Audio/UIMusic/Panel_pop"
+  },
+  "Collect_word": {
+    "name": "Collect_word",
+    "volume": 1,
+    "filePath": "Audio/UIMusic/Collect_word"
+  },
+  "Rotate": {
+    "name": "Rotate",
+    "volume": 1,
+    "filePath": "Audio/UIMusic/Rotate"
+  },
+  "Rotate_win": {
+    "name": "Rotate_win",
+    "volume": 1,
+    "filePath": "Audio/UIMusic/Rotate_win"
+  },
+  "Flip": {
+    "name": "Flip",
+    "volume": 1,
+    "filePath": "Audio/UIMusic/Flip"
+  },
+  "Bigwin": {
+    "name": "Bigwin",
+    "volume": 1.0,
+    "filePath": "Audio/UIMusic/Bigwin"
+  },
+  "Reward": {
+    "name": "Reward",
+    "volume": 1.0,
+    "filePath": "Audio/UIMusic/Reward"
+  },
+  "GameLose": {
+    "name": "GameLose",
+    "volume": 1.0,
+    "filePath": "Audio/UIMusic/GameLose"
+  },
+  "Sound_GoldCoin": {
+    "name": "Sound_GoldCoin",
+    "volume": 1.0,
+    "filePath": "Audio/UIMusic/Sound_GoldCoin"
+  },
+  "Sound_OneArmBandit": {
+    "name": "Sound_OneArmBandit",
+    "volume": 1.0,
+    "filePath": "Audio/UIMusic/Sound_OneArmBandit"
+  },
+  "Sound_PopShow": {
+    "name": "Sound_PopShow",
+    "volume": 1.0,
+    "filePath": "Audio/UIMusic/Sound_PopShow"
+  },
+  "Sound_UIButton": {
+    "name": "Sound_UIButton",
+    "volume": 1.0,
+    "filePath": "Audio/UIMusic/Sound_UIButton"
+  },
+  "Sound_BGM": {
+    "name": "Sound_BGM",
+    "volume": 0.3333,
+    "filePath": "Audio/SceneMusic/Sound_BGM"
+  },
+  "BGM": {
+    "name": "BGM",
+    "volume": 0.2,
+    "filePath": "Audio/SceneMusic/BGM"
+  }
+
+}

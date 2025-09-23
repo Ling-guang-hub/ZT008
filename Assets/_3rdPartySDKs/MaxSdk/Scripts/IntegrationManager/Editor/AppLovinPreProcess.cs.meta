@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 061900bfac265dd469e3ecc1077508eb
+labels:
+- al_max
+- al_max_export_path-MaxSdk/Scripts/IntegrationManager/Editor/AppLovinPreProcess.cs
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

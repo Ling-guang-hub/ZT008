@@ -1,0 +1,16 @@
+{
+  "BuildTarget": "iOS",
+  "DesState": "DES",
+  "BaseUrl": "http://chillzonegames.top",
+  "GameName": "Cube Descent",
+  "PackageName": "com.descent.tapcubegame",
+  "BuildCode": 9,
+  "Applovin_SDK_KEY": "MWmQjKad0/3ABy9cJzGt+jP/+D1kvXT1VFu4mkIuQmwTSvXs+FZKJFKVQaX01Xk5J7dHn8bMRrkwi/jSEO+ODiAB0kr3QuZ6hzkuLR6FTSd+PL05ega78A\u003d\u003d",
+  "Applovin_REWARD_ID": "4acafbba6216b5e0",
+  "Applovin_INTER_ID": "a8123d1cce8154a2",
+  "Adjust_APP_ID": "y9vh04qxum0w",
+  "GameCode": "21310",
+  "Rate_ID": "6752467752",
+  "Build_path": "D:\\unity_work\\release\\ScratchCard",
+  "ZT_LoginPlatform": 1
+}

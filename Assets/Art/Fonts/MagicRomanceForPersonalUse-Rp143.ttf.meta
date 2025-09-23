@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 120dcf7b9d32d8a448b3c131af3853e5
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Magic Romance For Personal Use
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 0959d64c28d4c484a84d26f28c45f100, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

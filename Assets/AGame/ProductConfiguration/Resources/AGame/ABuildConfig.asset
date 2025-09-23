@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe99f98970eb3ac4dbec78d99137a990, type: 3}
+  m_Name: ABuildConfig
+  m_EditorClassIdentifier: 
+  BuildTarget: iOS
+  LogoTexture: {fileID: 2800000, guid: ea2797a22dd24ff40a26e37081009ea9, type: 3}
+  Version: 1.0
+  ScreenOrientation: 0
+  IsEncrypt: 1
+  BaseUrl: http://chillzonegames.top
+  GameName: Cube Descent
+  PackageName: com.descent.tapcubegame
+  BuildCode: 1
+  Applovin_SDK_KEY: MWmQjKad0/3ABy9cJzGt+jP/+D1kvXT1VFu4mkIuQmwTSvXs+FZKJFKVQaX01Xk5J7dHn8bMRrkwi/jSEO+ODiAB0kr3QuZ6hzkuLR6FTSd+PL05ega78A==
+  Applovin_REWARD_ID: 4acafbba6216b5e0
+  Applovin_INTER_ID: a8123d1cce8154a2
+  Adjust_APP_ID: y9vh04qxum0w
+  GameCode: 21310
+  Rate_ID: 6752467752
+  ZT_LoginPlatform: 1
+  ZT_ID: 24

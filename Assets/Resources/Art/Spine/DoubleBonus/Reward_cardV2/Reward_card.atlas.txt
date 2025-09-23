@@ -1,0 +1,104 @@
+
+Reward_card.png
+size: 1111,2461
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Flash
+  rotate: false
+  xy: 994, 1040
+  size: 115, 435
+  orig: 125, 437
+  offset: 8, 1
+  index: -1
+GradientRing_in_1
+  rotate: false
+  xy: 813, 1477
+  size: 268, 330
+  orig: 270, 332
+  offset: 1, 1
+  index: -1
+GradientRing_in_2
+  rotate: false
+  xy: 582, 954
+  size: 410, 505
+  orig: 412, 507
+  offset: 1, 1
+  index: -1
+GradientRing_in_3
+  rotate: false
+  xy: 2, 747
+  size: 578, 712
+  orig: 580, 714
+  offset: 1, 1
+  index: -1
+GradientRing_in_4
+  rotate: false
+  xy: 2, 1461
+  size: 809, 998
+  orig: 811, 1000
+  offset: 1, 1
+  index: -1
+LightBG_yellow
+  rotate: false
+  xy: 588, 142
+  size: 486, 360
+  orig: 540, 475
+  offset: 24, 81
+  index: -1
+Reward_card_1
+  rotate: true
+  xy: 2, 98
+  size: 647, 293
+  orig: 649, 295
+  offset: 1, 1
+  index: -1
+Reward_card_2
+  rotate: true
+  xy: 813, 1809
+  size: 650, 295
+  orig: 653, 298
+  offset: 1, 1
+  index: -1
+Reward_card_3
+  rotate: true
+  xy: 297, 102
+  size: 643, 289
+  orig: 645, 291
+  offset: 1, 1
+  index: -1
+fx_b
+  rotate: false
+  xy: 2, 44
+  size: 52, 52
+  orig: 64, 64
+  offset: 5, 6
+  index: -1
+fx_b_blue
+  rotate: false
+  xy: 994, 998
+  size: 41, 40
+  orig: 64, 64
+  offset: 11, 12
+  index: -1
+fx_b_grenn
+  rotate: false
+  xy: 2, 2
+  size: 39, 40
+  orig: 64, 64
+  offset: 12, 12
+  index: -1
+fx_b_yellow
+  rotate: false
+  xy: 56, 56
+  size: 39, 40
+  orig: 64, 64
+  offset: 12, 12
+  index: -1
+glow6
+  rotate: false
+  xy: 588, 504
+  size: 445, 448
+  orig: 512, 512
+  offset: 36, 32
+  index: -1

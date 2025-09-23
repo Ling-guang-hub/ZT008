@@ -1,0 +1,153 @@
+
+LuckyWheel_complete.png
+size: 1251,161
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+10L
+  rotate: true
+  xy: 564, 87
+  size: 72, 84
+  orig: 77, 87
+  offset: 3, 1
+  index: -1
+1L
+  rotate: true
+  xy: 727, 86
+  size: 73, 84
+  orig: 78, 87
+  offset: 3, 1
+  index: -1
+2U
+  rotate: true
+  xy: 891, 85
+  size: 74, 84
+  orig: 80, 88
+  offset: 3, 2
+  index: -1
+3C
+  rotate: true
+  xy: 87, 10
+  size: 79, 84
+  orig: 84, 88
+  offset: 2, 2
+  index: -1
+4K
+  rotate: false
+  xy: 259, 5
+  size: 85, 84
+  orig: 90, 88
+  offset: 3, 2
+  index: -1
+5Y
+  rotate: true
+  xy: 2, 16
+  size: 77, 83
+  orig: 82, 87
+  offset: 3, 2
+  index: -1
+6W
+  rotate: false
+  xy: 346, 5
+  size: 113, 84
+  orig: 118, 88
+  offset: 3, 2
+  index: -1
+7H
+  rotate: true
+  xy: 173, 7
+  size: 82, 84
+  orig: 88, 88
+  offset: 3, 2
+  index: -1
+8E
+  rotate: true
+  xy: 158, 91
+  size: 68, 84
+  orig: 74, 87
+  offset: 3, 1
+  index: -1
+9E
+  rotate: true
+  xy: 244, 91
+  size: 68, 84
+  orig: 73, 87
+  offset: 3, 1
+  index: -1
+TextBG_1
+  rotate: false
+  xy: 461, 2
+  size: 767, 79
+  orig: 769, 81
+  offset: 1, 1
+  index: -1
+r_10L
+  rotate: true
+  xy: 408, 91
+  size: 68, 76
+  orig: 70, 78
+  offset: 1, 1
+  index: -1
+r_1L
+  rotate: true
+  xy: 330, 91
+  size: 68, 76
+  orig: 70, 78
+  offset: 1, 1
+  index: -1
+r_2U
+  rotate: true
+  xy: 486, 89
+  size: 70, 76
+  orig: 73, 78
+  offset: 1, 1
+  index: -1
+r_3C
+  rotate: true
+  xy: 813, 86
+  size: 73, 76
+  orig: 75, 78
+  offset: 1, 1
+  index: -1
+r_4K
+  rotate: false
+  xy: 977, 83
+  size: 81, 76
+  orig: 83, 78
+  offset: 1, 1
+  index: -1
+r_5Y
+  rotate: true
+  xy: 650, 87
+  size: 72, 75
+  orig: 75, 77
+  offset: 2, 1
+  index: -1
+r_6W
+  rotate: false
+  xy: 1060, 83
+  size: 108, 76
+  orig: 110, 78
+  offset: 1, 1
+  index: -1
+r_7H
+  rotate: false
+  xy: 1170, 83
+  size: 79, 76
+  orig: 82, 78
+  offset: 2, 1
+  index: -1
+r_8E
+  rotate: true
+  xy: 2, 96
+  size: 63, 76
+  orig: 66, 78
+  offset: 1, 1
+  index: -1
+r_9E
+  rotate: true
+  xy: 80, 95
+  size: 64, 76
+  orig: 66, 78
+  offset: 1, 1
+  index: -1

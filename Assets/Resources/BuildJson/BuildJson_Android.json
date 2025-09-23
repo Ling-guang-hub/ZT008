@@ -1,0 +1,14 @@
+{
+  "BuildTarget": "Android",
+  "DesState": "DES",
+  "BaseUrl": "http://bluecurarefrog.top",
+  "GameName": "Plinko Master",
+  "PackageName": "com.ballgame.plinkomaster",
+  "BuildCode": 3,
+  "Applovin_SDK_KEY": "ODgF1DrRaBtihaXfTZO6RwX9ZVa8XFQD0529V3Rjq2ovrC0rEOAG5u/dtLeyN8k8x1uceFnF4WuEmoglMBqLdMXo+yyDM5HpVQE6dHDG5ZUrhwQeBGYkog\u003d\u003d",
+  "Applovin_REWARD_ID": "69764a57bfda61f5",
+  "Applovin_INTER_ID": "b5c0f3811ea569f3",
+  "Adjust_APP_ID": "5kzdsr35g8ow",
+  "GameCode": "21088",
+  "Build_path": "D:/unity_work/release/Plinko144"
+}

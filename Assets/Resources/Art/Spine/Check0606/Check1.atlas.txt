@@ -1,0 +1,97 @@
+
+Check1.png
+size: 4644, 2840
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+Card_1_game_3
+  rotate: false
+  xy: 2, 1421
+  size: 1082, 1417
+  orig: 1082, 1417
+  offset: 0, 0
+  index: -1
+Card_2_game_3
+  rotate: false
+  xy: 2, 2
+  size: 1082, 1417
+  orig: 1082, 1417
+  offset: 0, 0
+  index: -1
+Card_3_game_3
+  rotate: false
+  xy: 1086, 1421
+  size: 1082, 1417
+  orig: 1082, 1417
+  offset: 0, 0
+  index: -1
+Card_4_game_3
+  rotate: false
+  xy: 1086, 2
+  size: 1082, 1417
+  orig: 1082, 1417
+  offset: 0, 0
+  index: -1
+Card_5_game_3
+  rotate: false
+  xy: 2170, 1421
+  size: 1082, 1417
+  orig: 1082, 1417
+  offset: 0, 0
+  index: -1
+Card_6_game_3
+  rotate: false
+  xy: 2170, 2
+  size: 1082, 1417
+  orig: 1082, 1417
+  offset: 0, 0
+  index: -1
+Card_7_game_3
+  rotate: false
+  xy: 3254, 1421
+  size: 1082, 1417
+  orig: 1082, 1417
+  offset: 0, 0
+  index: -1
+Card_8_game_3
+  rotate: false
+  xy: 3254, 2
+  size: 1082, 1417
+  orig: 1082, 1417
+  offset: 0, 0
+  index: -1
+Fx_piece_1
+  rotate: false
+  xy: 4338, 2417
+  size: 17, 37
+  orig: 17, 37
+  offset: 0, 0
+  index: -1
+Fx_piece_2
+  rotate: true
+  xy: 4357, 2429
+  size: 25, 22
+  orig: 25, 22
+  offset: 0, 0
+  index: -1
+Fx_piece_3
+  rotate: false
+  xy: 4382, 2462
+  size: 23, 25
+  orig: 23, 25
+  offset: 0, 0
+  index: -1
+Fx_piece_4
+  rotate: false
+  xy: 4338, 2456
+  size: 42, 31
+  orig: 42, 31
+  offset: 0, 0
+  index: -1
+hand
+  rotate: true
+  xy: 4338, 2489
+  size: 349, 304
+  orig: 349, 304
+  offset: 0, 0
+  index: -1

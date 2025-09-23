@@ -1,0 +1,44 @@
+﻿{
+  "GameSetting": [],
+  "Item": {
+    "gold": {
+      "id": "Gold",
+      "value_type": "Item",
+      "comment": "金币",
+      "icon": "Art/Tex/UI/Item/item_gold",
+      "defaultValue": 300,
+      "minValue": 0,
+      "maxValue": -1,
+      "type": 1
+    },
+    "diamond": {
+      "id": "Diamond",
+      "value_type": "Item",
+      "comment": "钻石",
+      "icon": "Art/Tex/UI/Item/item_diamond",
+      "defaultValue": 0,
+      "minValue": 0,
+      "maxValue": -1,
+      "type": 1
+    },
+    "amazon": {
+      "id": "amazon",
+      "value_type": "Item",
+      "comment": "亚马逊卡",
+      "icon": "Art/Tex/UI/Item/item_amazon",
+      "defaultValue": 0,
+      "minValue": 0,
+      "maxValue": -1,
+      "type": 1
+    },
+    "exp": {
+      "id": "exp",
+      "value_type": "Item",
+      "comment": "经验",
+      "defaultValue": 0,
+      "minValue": 0,
+      "maxValue": -1,
+      "type": 2
+    }
+  }
+}

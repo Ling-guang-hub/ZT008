@@ -1,0 +1,76 @@
+
+ChoseCard.png
+size: 925,267
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Card_1
+  rotate: true
+  xy: 763, 149
+  size: 116, 143
+  orig: 125, 166
+  offset: 7, 10
+  index: -1
+Card_2
+  rotate: false
+  xy: 341, 121
+  size: 122, 144
+  orig: 134, 164
+  offset: 9, 9
+  index: -1
+Card_3
+  rotate: true
+  xy: 341, 6
+  size: 113, 143
+  orig: 119, 162
+  offset: 4, 10
+  index: -1
+Card_4
+  rotate: true
+  xy: 465, 152
+  size: 113, 149
+  orig: 130, 168
+  offset: 7, 9
+  index: -1
+Card_5
+  rotate: true
+  xy: 616, 152
+  size: 113, 145
+  orig: 211, 288
+  offset: 50, 73
+  index: -1
+Card_6
+  rotate: false
+  xy: 486, 7
+  size: 113, 143
+  orig: 181, 246
+  offset: 35, 53
+  index: -1
+Card_7
+  rotate: true
+  xy: 716, 34
+  size: 113, 142
+  orig: 171, 234
+  offset: 30, 46
+  index: -1
+Card_8
+  rotate: false
+  xy: 601, 7
+  size: 113, 143
+  orig: 195, 264
+  offset: 43, 61
+  index: -1
+Lock
+  rotate: false
+  xy: 860, 63
+  size: 63, 84
+  orig: 63, 84
+  offset: 0, 0
+  index: -1
+bg_1
+  rotate: false
+  xy: 2, 2
+  size: 337, 263
+  orig: 345, 272
+  offset: 4, 5
+  index: -1

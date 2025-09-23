@@ -1,0 +1,87 @@
+{
+  "ConfigInfo": [
+    {
+      "Key": "本配置文件说明"
+    },
+    {
+      "Key": "TameMagic",
+      "Value": "UIPanel\\TameMagic"
+    },
+    {
+      "Key": "SkinMagic",
+      "Value": "UIPanel\\SkinMagic"
+    },
+    {
+      "Key": "FestiveMagic",
+      "Value": "UIPanel\\FestiveMagic"
+    },
+    {
+      "Key": "Toast",
+      "Value": "UIPanel\\Common\\Toast"
+    },
+    {
+      "Key": "CohesionMagic",
+      "Value": "UIPanel\\CohesionMagic"
+    },
+    {
+      "Key": "WebFlyMagic",
+      "Value": "UIPanel\\WebFlyMagic"
+    },
+    {
+      "Key": "PlainFlyMagic",
+      "Value": "UIPanel\\PlainFlyMagic"
+    },
+    {
+      "Key": "BulkMeMagic",
+      "Value": "UIPanel\\BulkMeMagic"
+    },
+    {
+      "Key": "KnapThingMagic",
+      "Value": "UIPanel\\KnapThingMagic"
+    },
+    {
+      "Key": "KnapCarbonMagic",
+      "Value": "UIPanel\\KnapCarbonMagic"
+    },
+    {
+      "Key": "PuffMagic",
+      "Value": "UIPanel\\PuffMagic"
+    },
+    {
+      "Key": "TraceMagic",
+      "Value": "UIPanel\\TraceMagic"
+    },
+    {
+      "Key": "TraceFlashMagic",
+      "Value": "UIPanel\\TraceFlashMagic"
+    },
+    {
+      "Key": "TraceWebFlyMagic",
+      "Value": "UIPanel\\TraceWebFlyMagic"
+    },
+    {
+      "Key": "EdgeBothMagic",
+      "Value": "UIPanel\\EdgeBothMagic"
+    },
+    {
+      "Key": "KeepMagic",
+      "Value": "UIPanel\\KeepMagic"
+    },
+    {
+      "Key": "CashOutPanel",
+      "Value": "UIPanel\\CashOutPanel"
+    },
+    {
+      "Key": "YamLoneGourdMagic",
+      "Value": "UIPanel\\YamLoneGourdMagic"
+    },
+    {
+      "Key": "AdManagerTestPanel",
+      "Value": "UIPanel\\Test\\AdManagerTestPanel"
+    },
+    {
+      "Key": "SpoonMagic",
+      "Value": "UIPanel\\SpoonMagic"
+    }
+  ]
+}

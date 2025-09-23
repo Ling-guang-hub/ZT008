@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 3c5963c7c82e5034f9c9a23a00948835
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Lime Days
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: b0ef4caa1ce9147468286ff3d04d664d, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
