@@ -74,7 +74,6 @@ public class MiniCard : MonoBehaviour
 
     public void PostDeed()
     {
-        Debug.Log("here");
         _isSelected = LocalCommonData.CurrentCardId == cardId;
         _cardSkeleton = cardSpineObj.GetComponent<SkeletonGraphic>();
         _isLocked = CheckUnlock();

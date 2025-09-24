@@ -618,8 +618,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _LoginPlatform: 1
-  AppInfo: 18
-  BaseUrl: https://us.nicedramatv.com
+  AppInfo: 68
+  BaseUrl: http://us.chillzonegames.top
   Account: 
   Data:
     UserID: 

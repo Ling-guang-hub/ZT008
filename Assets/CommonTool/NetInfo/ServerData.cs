@@ -90,6 +90,10 @@ public class MultiGroup
 public class GameData
 {
 
+    public int first_coin { get; set; }
+    
+    public List<int> random_coin { get; set; }
+
     public int bigwin_limit { get; set; }
 
     public List<int> wheel_step { get; set; }

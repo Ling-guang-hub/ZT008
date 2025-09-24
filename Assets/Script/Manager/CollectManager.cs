@@ -63,6 +63,11 @@ public class CollectManager : MonoBehaviour
         PlayerPrefs.SetInt(CurCollectKey, 0);
     }
 
+    public void SetCollectCount(int num)
+    {
+        PlayerPrefs.SetInt(CurCollectKey, num);
+    }
+
     public bool CheckGetReward()
     {
         return GetCurCollectCount() >= CollectLimit;

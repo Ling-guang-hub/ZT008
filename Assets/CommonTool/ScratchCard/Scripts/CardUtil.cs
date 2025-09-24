@@ -187,6 +187,10 @@ public static class LocalCommonData
 
     public static int NextRandomCardId;
 
+    public static int RandomCoinStart;
+    
+    public static int RandomCoinEnd;
+
     // public static CardItemType CardRewardTypeToCareItemType(CardRewardType rewardType)
     // {
     //     return rewardType switch

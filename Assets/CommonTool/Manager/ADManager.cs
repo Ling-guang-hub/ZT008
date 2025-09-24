@@ -435,12 +435,12 @@ public class ADManager : MonoBehaviour
 
         //这个参数很少有游戏会用 需要的时候自己再打开
         // 当用户过关数 < trial_MaxNum时，不弹插屏广告
-        // int sv_trialNum = SaveDataManager.GetInt(CConfig.sv_ad_trial_num);
-        // int trial_MaxNum = int.Parse(NetInfoMgr.instance.ConfigData.trial_MaxNum);
-        // if (sv_trialNum < trial_MaxNum)
-        // {
-        //     return;
-        // }
+        int sv_trialNum = SaveDataManager.GetInt(CConfig.sv_ad_trial_num);
+        int trial_MaxNum = int.Parse(NetInfoMgr.instance.ConfigData.trial_MaxNum);
+        if (sv_trialNum < trial_MaxNum)
+        {
+            return;
+        }
 
         // 时间间隔低于阈值，不播放广告
         if (lastPlayTimeCounter < int.Parse(NetInfoMgr.instance.ConfigData.inter_freq))

@@ -245,12 +245,15 @@ public class BaseCard : MonoBehaviour
 
     protected BaseRewardItemData GetNewUserReward()
     {
+        
+        int  firstCoin = NetInfoMgr.instance.GameData.first_coin;
+        
         BaseRewardItemData rewardData = new BaseRewardItemData
         {
             IsThanks = false,
             Type = CommonRewardType.Coin,
             RewardSprite = RewardSpriteDict["Coin"],
-            Amount = 10000,
+            Amount = firstCoin,
         };
         return rewardData;
     }

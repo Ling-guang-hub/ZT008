@@ -77,6 +77,8 @@ public class MainManager : MonoBehaviour
     {
         // set  first card
         LocalCommonData.CurrentCardId = NetInfoMgr.instance.GameData.focus_card;
+        LocalCommonData.RandomCoinStart = NetInfoMgr.instance.GameData.random_coin[0];
+        LocalCommonData.RandomCoinEnd = NetInfoMgr.instance.GameData.random_coin[1];
 
         // get active cards  
         LocalCardData.ActCardIds = NetInfoMgr.instance.GameData.active_card;

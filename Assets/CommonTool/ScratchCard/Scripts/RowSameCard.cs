@@ -227,6 +227,10 @@ public class RowSameCard : BaseCard
             for (int i = 0; i < rewardDataList.Count; i++)
             {
                 rewardDataList[i] = GetEffectiveReward();
+                while (rewardDataList[i].Type == CommonRewardType.Goods)
+                {
+                    rewardDataList[i] = GetEffectiveReward();
+                }
             }
 
             CardUtil.Shuffle(rewardDataList);

@@ -145,11 +145,11 @@ public class CardManager : MonoBehaviour
         switch (itemData.Type)
         {
             case CommonRewardType.Coin:
-                itemData.Amount = Random.Range(100, 10000);
+                itemData.Amount = Random.Range(LocalCommonData.RandomCoinStart, LocalCommonData.RandomCoinEnd);
                 itemData.GoodsIdx = -1;
                 break;
             case CommonRewardType.Cash:
-                itemData.Amount = Random.Range(10, 10000);
+                itemData.Amount = Random.Range(LocalCommonData.RandomCoinStart,  LocalCommonData.RandomCoinEnd);
                 itemData.GoodsIdx = -1;
                 break;
             default:

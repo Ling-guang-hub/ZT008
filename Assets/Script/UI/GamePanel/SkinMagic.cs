@@ -727,7 +727,7 @@ public class SkinMagic : BaseUIForms
         }
     }
 
-    public async  void CheckShowCollectBonus()
+    public async  void CheckShowCollectBonus(int moreCount)
     {
         if (CollectManager.Instance.CheckGetReward())
         {
@@ -745,7 +745,7 @@ public class SkinMagic : BaseUIForms
             UIManager.GetInstance().ShowUIForms(reward >= _bigWinLimit
                 ? nameof(WebFlyMagic)
                 : nameof(CohesionMagic), thisData);
-            CollectManager.Instance.ClearCollectCount();
+            CollectManager.Instance.SetCollectCount(moreCount);
             collectBar.GetComponent<CollectBarCtrl>().ShowCollects();
         }
         else

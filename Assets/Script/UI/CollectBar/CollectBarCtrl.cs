@@ -55,10 +55,6 @@ public class CollectBarCtrl : MonoBehaviour
 
     public void AddCollectAndPlayAct()
     {
-        // List<Vector3> thisPos = new List<Vector3>();
-
-        // List<Vector3> thisPos = LocalRewardData.CompleteData.CollectsPos;
-
         List<KeyValuePair<int, Vector3>> thisPos = LocalRewardData.CompleteData.CollectsPos;
         Dictionary<int, List<Vector3>> collectPos = new Dictionary<int, List<Vector3>>();
         List<int> keyList = new List<int>();
@@ -77,6 +73,26 @@ public class CollectBarCtrl : MonoBehaviour
             collectPos[idx].Add(pos);
         }
 
+        if (LocalRewardData.CompleteData.IsSpecial)
+        {
+            foreach (var t in thisPos)
+            {
+                int idx =100+ t.Key;
+                Vector3 pos = t.Value;
+
+                if (!keyList.Contains(idx))
+                {
+                    collectPos[idx] = new List<Vector3>();
+                    keyList.Add(idx);
+                }
+
+                collectPos[idx].Add(pos);
+            } 
+            
+        }
+
+        keyList.Sort();
+
         Sequence s = GetFlyAnimSeq(keyList, collectPos);
 
         DOTween.Play(s);
@@ -94,8 +110,6 @@ public class CollectBarCtrl : MonoBehaviour
         Destroy(item, 0.2f);
     }
 
-    
-    
 
     private Sequence GetFlyAnimSeq(List<int> keys, Dictionary<int, List<Vector3>> collectPosDic)
     {
@@ -104,11 +118,18 @@ public class CollectBarCtrl : MonoBehaviour
         Sequence s = DOTween.Sequence();
 
         float deTime = 0.1f;
+        int moreCount = 0;
 
         for (int i = 0; i < keys.Count; i++)
         {
             int thisKey = keys[i];
             int targetObjIdx = _curCollectCount + i;
+            if (targetObjIdx >=collectItems.Count)
+            {
+                moreCount = keys.Count+ _curCollectCount-collectItems.Count;
+                break;
+            }
+
             List<Vector3> collectPos = collectPosDic[thisKey];
             if (collectPos.Count > 1)
             {
@@ -170,20 +191,19 @@ public class CollectBarCtrl : MonoBehaviour
             }
         }
 
-        s.OnComplete(() => { AfterFly(keys.Count); });
+
+        s.OnComplete(() => { AfterFly(keys.Count, moreCount); });
         s.SetId(CollectsSeqStr);
         return s;
     }
 
 
-    
-    
-    private void AfterFly(int count)
+    private void AfterFly(int count, int moreCount)
     {
         CollectManager.Instance.AddCollectCount(count);
         ShowCollects();
         LocalRewardData.CompleteData.CollectsPos.Clear();
-        SkinMagic.Instance.CheckShowCollectBonus();
+        SkinMagic.Instance.CheckShowCollectBonus(moreCount);
     }
 
 

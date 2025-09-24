@@ -18,7 +18,7 @@ public class CashOutManager : MonoSingleton<CashOutManager>
     [Header("短剧后台的产品id")]
     public string AppInfo = "4";
     string WithdrawPlatform = "PAYPAL";
-    public string BaseUrl = "https://us.nicedramatv.com";
+    public string BaseUrl = "http://us.chillzonegames.top";
     [HideInInspector] public string Account;
     [HideInInspector] public CashOutResponseData Data;
     [HideInInspector] public long LeftTime; // 剩余时间
