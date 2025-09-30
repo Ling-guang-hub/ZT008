@@ -549,13 +549,16 @@ public class BaseCard : MonoBehaviour
     protected async void DoBoardAct()
     {
         
-        HapticPatterns.PlayPreset(HapticPatterns.PresetType.Selection);
+
         _boardSpineSkeleton.Initialize(true);
         boardSpineObj.gameObject.SetActive(true);
         _boardSpineSkeleton.AnimationState.SetEmptyAnimation(0, 0);
         _boardSpineSkeleton.GetComponent<SkeletonGraphic>().AnimationState.SetAnimation(0, "animation", true);
 
         await UniTask.Delay(400);
+        
+        // HapticPatterns.PlayPreset(HapticPatterns.PresetType.Success);
+        HapticPatterns.PlayConstant(0.6f,0.6f,0.3f);
         
         superSpineObj.gameObject.SetActive(true);
         _superSpineSkeleton.Initialize(true);

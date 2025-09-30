@@ -567,7 +567,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _LoginPlatform: 1
-  AppInfo: 
+  AppInfo: 68
   BaseUrl: http://us.chillzonegames.top
   Account: 
   Data:

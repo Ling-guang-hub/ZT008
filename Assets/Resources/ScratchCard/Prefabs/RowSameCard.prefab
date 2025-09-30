@@ -88,7 +88,7 @@ MonoBehaviour:
   SurfaceTransform: {fileID: 4681410179365343383}
   SurfaceMaterial: {fileID: 2100000, guid: ce23c1004fdacf544884283aa57dd713, type: 2}
   BrushMaterial: {fileID: 0}
-  BrushSize: 2
+  BrushSize: 3
   RenderTextureQuality: 1
   mode: 0
 --- !u!114 &1228031106242151307
