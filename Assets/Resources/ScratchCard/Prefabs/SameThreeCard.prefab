@@ -389,7 +389,7 @@ MonoBehaviour:
   scratchSurfaceSprite: {fileID: 21300000, guid: 74e07c8a620d20a4a947a094e0b9f89c, type: 3}
   progressAccuracy: 0
   brushTexture: {fileID: 2800000, guid: 3e68b5f949f2c7b4084d0cd005d0567f, type: 3}
-  brushSize: 3
+  brushSize: 4
   brushOpacity: 1
   inputEnabled: 1
   usePressure: 0
