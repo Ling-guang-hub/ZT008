@@ -186,7 +186,7 @@ public class ADManager : MonoBehaviour
     private void OnRewardedAdDisplayedEvent(string adUnitId, MaxSdkBase.AdInfo adInfo)
     {
 #if UNITY_IOS
-        MusicMgr.GetInstance().BgMusicSwitch = !MusicMgr.GetInstance().BgMusicSwitch;
+        // MusicMgr.GetInstance().BgMusicSwitch = !MusicMgr.GetInstance().BgMusicSwitch;
         Time.timeScale = 0;
 #endif
     }
@@ -208,7 +208,8 @@ public class ADManager : MonoBehaviour
         // Rewarded ad is hidden. Pre-load the next ad
 #if UNITY_IOS
         Time.timeScale = 1;
-        MusicMgr.GetInstance().BgMusicSwitch = !MusicMgr.GetInstance().BgMusicSwitch;
+        // MusicMgr.GetInstance().BgMusicSwitch = !MusicMgr.GetInstance().BgMusicSwitch;
+        MusicMgr.GetInstance().PlayBg(MusicType.SceneMusic.BGM);
 #endif
 
         isShowingAd = false;
@@ -303,7 +304,7 @@ public class ADManager : MonoBehaviour
     private void OnInterstitialDisplayedEvent(string adUnitId, MaxSdkBase.AdInfo adInfo)
     {
 #if UNITY_IOS
-        MusicMgr.GetInstance().BgMusicSwitch = !MusicMgr.GetInstance().BgMusicSwitch;
+        // MusicMgr.GetInstance().BgMusicSwitch = !MusicMgr.GetInstance().BgMusicSwitch;
         Time.timeScale = 0;
 #endif
     }
@@ -359,7 +360,8 @@ public class ADManager : MonoBehaviour
         // Interstitial ad is hidden. Pre-load the next ad.
 #if UNITY_IOS
         Time.timeScale = 1;
-        MusicMgr.GetInstance().BgMusicSwitch = !MusicMgr.GetInstance().BgMusicSwitch;
+        // MusicMgr.GetInstance().BgMusicSwitch = !MusicMgr.GetInstance().BgMusicSwitch;
+        MusicMgr.GetInstance().PlayBg(MusicType.SceneMusic.BGM);
 #endif
         LoadInterstitial();
 

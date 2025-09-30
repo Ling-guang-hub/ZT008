@@ -920,7 +920,7 @@ MonoBehaviour:
   top: {fileID: 2750319397405163575}
   mainCard: {fileID: 1194289279090532779}
   cardAnimator: {fileID: 7781946910481511001}
-  cardLessProgress: 0.9
+  cardLessProgress: 0.75
   cardId: 0
   cardType: 1
   baseItemOnAtlas: {fileID: 100100200, guid: deca5fe60e0d87f45bc38b37ab267f13, type: 3}

@@ -325,9 +325,9 @@ public class SkinMagic : BaseUIForms
         else
         {
             // 1080*2340
-            wheelBar.transform.localPosition = new Vector3(-150f, -320f, 0);
-            timeBar.transform.localPosition = new Vector3(250, -320f, 0);
-            topBar.transform.localPosition = new Vector3(200f, -145f, 0);
+            wheelBar.transform.localPosition = new Vector3(-150f, -330f, 0);
+            timeBar.transform.localPosition = new Vector3(250, -330f, 0);
+            topBar.transform.localPosition = new Vector3(200f, -185f, 0);
 
             AlikeBuy.gameObject.transform.localPosition = new Vector3(100f, -150f, 0);
             settingBtn.gameObject.transform.localPosition = new Vector3(-100f, -150f, 0);
@@ -342,7 +342,7 @@ public class SkinMagic : BaseUIForms
             cardArea.transform.localPosition = new Vector3(0, 120, 0);
 
             cashShopObj.transform.localScale = new Vector3(0.8f, 0.8f, 0);
-            cashShopObj.transform.localPosition = new Vector3(0f, -150f, 0);
+            cashShopObj.transform.localPosition = new Vector3(0f, -190f, 0);
             
             collectBar.transform.localPosition = new Vector3(0, -600f, 0);
         }

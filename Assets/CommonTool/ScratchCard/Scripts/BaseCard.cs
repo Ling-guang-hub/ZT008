@@ -8,6 +8,7 @@
 
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using Lofelt.NiceVibrations;
 using ScratchCardAsset;
 using ScratchCardAsset.Animation;
 using Spine;
@@ -547,13 +548,15 @@ public class BaseCard : MonoBehaviour
 
     protected async void DoBoardAct()
     {
+        
+        HapticPatterns.PlayPreset(HapticPatterns.PresetType.Selection);
         _boardSpineSkeleton.Initialize(true);
         boardSpineObj.gameObject.SetActive(true);
         _boardSpineSkeleton.AnimationState.SetEmptyAnimation(0, 0);
         _boardSpineSkeleton.GetComponent<SkeletonGraphic>().AnimationState.SetAnimation(0, "animation", true);
 
         await UniTask.Delay(400);
-
+        
         superSpineObj.gameObject.SetActive(true);
         _superSpineSkeleton.Initialize(true);
         _superSpineSkeleton.AnimationState.Complete += ShowSuperFinish;

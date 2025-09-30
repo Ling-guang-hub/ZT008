@@ -227,7 +227,7 @@ public class TameMagic : BaseUIForms
             timeBarObj.transform.localPosition = new Vector3(0, -350f, 0);
             wheelBar.transform.localPosition = new Vector3(-150f, -300f, 0);
 
-            topBar.transform.localPosition = new Vector3(200f, -145f, 0);
+            topBar.transform.localPosition = new Vector3(200f, -185f, 0);
 
             settingBtn.gameObject.transform.localPosition = new Vector3(-100f, -150f, 0);
 
@@ -241,7 +241,7 @@ public class TameMagic : BaseUIForms
             cardNameText.transform.localPosition = new Vector3(0, -400, 0);
 
             cashShopObj.transform.localScale = new Vector3(0.8f, 0.8f, 0);
-            cashShopObj.transform.localPosition = new Vector3(0f, -150f, 0);
+            cashShopObj.transform.localPosition = new Vector3(0f, -190f, 0);
         }
     }
 
