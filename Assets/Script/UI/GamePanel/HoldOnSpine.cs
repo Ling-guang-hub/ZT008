@@ -41,7 +41,7 @@ public class HoldOnSpine : MonoBehaviour
     {
         handSpineObj.gameObject.SetActive(false);
         _handSkeleton = handSpineObj.GetComponent<SkeletonGraphic>();
-        _handSkeleton.AnimationState.Complete += VoleVerify;
+        _handSkeleton.AnimationState.Complete += BoreMottle;
 
 
         MessageCenterLogic.GetInstance().Register(CConfig.mg_PassAnim, (md) => { _isPass = true; });
@@ -197,7 +197,7 @@ public class HoldOnSpine : MonoBehaviour
     }
 
 
-    private void VoleVerify(TrackEntry trackEntry)
+    private void BoreMottle(TrackEntry trackEntry)
     {
         CloseSpine();
     }

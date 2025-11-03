@@ -7,6 +7,7 @@
 
 
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CollectManager : MonoBehaviour
@@ -15,9 +16,15 @@ public class CollectManager : MonoBehaviour
 
     public readonly int CollectLimit = 7;
 
-    private readonly string CurCollectKey = "Coll_CurCollectKey";
+    private readonly string CurCollectKeyStr = "Coll_CurCollectKey";
 
+    public Dictionary<string, int> LimitDict;
+    public Dictionary<CollectType, int> RewardDict;
 
+    public bool needFly;
+
+    public CollectType curType;
+    
     private void Awake()
     {
         if (Instance == null)
@@ -31,45 +38,67 @@ public class CollectManager : MonoBehaviour
         }
     }
 
-    private void Start()
+
+    public void InitData()
     {
-        if (!PlayerPrefs.HasKey(CurCollectKey))
+        LimitDict = new Dictionary<string, int>();
+        RewardDict = new Dictionary<CollectType, int>
         {
-            PlayerPrefs.SetInt(CurCollectKey, 0);
-        }
+            [CollectType.KeyRing] = 100,
+            [CollectType.Flame] = NetInfoMgr.instance.GameData.flame_cash,
+            [CollectType.Lightning] = NetInfoMgr.instance.GameData.lightning_cash
+        };
+
     }
 
 
- 
-
-    public int GetCurCollectCount()
+    public int GetCollectReward(CollectType collectType)
     {
-        return PlayerPrefs.GetInt(CurCollectKey);
+        return RewardDict[collectType];
+    }
+
+    public string GetCurrentCollectKey(CollectType idx)
+    {
+        return CurCollectKeyStr + idx;
     }
 
 
-    public int GetActiveCollectCount()
+    public int GetCurCollectCount(string keyStr)
     {
-        return CollectLimit - PlayerPrefs.GetInt(CurCollectKey);
+        return PlayerPrefs.GetInt(keyStr);
     }
 
-    public void AddCollectCount(int num)
+
+    public int GetActiveCollectCount(string keyStr)
     {
-        PlayerPrefs.SetInt(CurCollectKey, num + GetCurCollectCount());
+        return CollectLimit - PlayerPrefs.GetInt(keyStr);
     }
 
-    public void ClearCollectCount()
+    public void AddCollectCount(int num, string keyStr)
     {
-        PlayerPrefs.SetInt(CurCollectKey, 0);
+        PlayerPrefs.SetInt(keyStr, num + GetCurCollectCount(keyStr));
     }
 
-    public void SetCollectCount(int num)
+    public void ClearCollectCount(string keyStr)
     {
-        PlayerPrefs.SetInt(CurCollectKey, num);
+        PlayerPrefs.SetInt(keyStr, 0);
+    }
+
+    public void SetCollectCount(int num, string keyStr)
+    {
+        PlayerPrefs.SetInt(keyStr, num);
     }
 
     public bool CheckGetReward()
     {
-        return GetCurCollectCount() >= CollectLimit;
+        foreach (string strKey in LimitDict.Keys)
+        {
+            if (GetCurCollectCount(strKey) >= LimitDict[strKey])
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

@@ -84,7 +84,7 @@ MonoBehaviour:
   SurfaceTransform: {fileID: 4681410179365343383}
   SurfaceMaterial: {fileID: 2100000, guid: 193482e294bab904796fbdd4b275db2e, type: 2}
   BrushMaterial: {fileID: 0}
-  BrushSize: 3
+  BrushSize: 2
   RenderTextureQuality: 1
   mode: 0
 --- !u!114 &1228031106242151307
@@ -332,7 +332,7 @@ MonoBehaviour:
   scratchSurfaceSprite: {fileID: 21300000, guid: 92fdb3d8623250142a28c3d0119098b8, type: 3}
   progressAccuracy: 0
   brushTexture: {fileID: 2800000, guid: 3e68b5f949f2c7b4084d0cd005d0567f, type: 3}
-  brushSize: 4
+  brushSize: 2
   brushOpacity: 1
   inputEnabled: 1
   usePressure: 0
@@ -484,7 +484,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 92fdb3d8623250142a28c3d0119098b8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bcecefcf623dd13468e577c2cface9e4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -659,20 +659,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   top: {fileID: 2750319397405163575}
   mainCard: {fileID: 1194289279090532779}
-  cardAnimator: {fileID: 0}
   cardLessProgress: 0.9
   cardId: 0
   cardType: 0
   baseItemOnAtlas: {fileID: 0}
   baseItemOffAtlas: {fileID: 0}
   baseRewardAtlas: {fileID: 100100200, guid: 761dec287e5833740aebe9da1004e7b5, type: 3}
-  mainItemList: []
-  rewardItemList: []
-  checkSpineObj: {fileID: 0}
-  superSpineObj: {fileID: 0}
-  boardSpineObj: {fileID: 0}
-  targetObj: {fileID: 0}
-  mainArea: {fileID: 0}
+  rewardArea: {fileID: 824464766587088071}
+  itemGroupArea: {fileID: 4158643828932604315}
 --- !u!1 &8821024845751179992
 GameObject:
   m_ObjectHideFlags: 0

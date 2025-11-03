@@ -72,7 +72,7 @@ public class MiniCard : MonoBehaviour
         _cardSkeleton.AnimationState.SetAnimation(0, "Lock", true);
     }
 
-    public void PostDeed()
+    public void LintIraq()
     {
         _isSelected = LocalCommonData.CurrentCardId == cardId;
         _cardSkeleton = cardSpineObj.GetComponent<SkeletonGraphic>();
@@ -92,12 +92,14 @@ public class MiniCard : MonoBehaviour
 
     private void InitAnim()
     {
-        _cardSkeleton.Initialize(true);
-        _cardSkeleton.Skeleton.SetSkin(cardType.ToString());
+        _cardSkeleton.initialSkinName = cardType.ToString(); 
+        // _cardSkeleton.Skeleton.SetSkin(cardType.ToString());
         _cardSkeleton.Skeleton.SetSlotsToSetupPose();
         _cardSkeleton.Skeleton.SetToSetupPose();
         _cardSkeleton.AnimationState.SetEmptyAnimation(0, 0);
         _cardSkeleton.AnimationState.SetAnimation(0, GetActName(), true);
+        _cardSkeleton.startingAnimation = GetActName();
+        _cardSkeleton.Initialize(true);
     }
 
 
@@ -106,7 +108,7 @@ public class MiniCard : MonoBehaviour
         if (_isSelected) return;
         MusicMgr.GetInstance().PlayEffect(MusicType.UIMusic.Button_1);
         BeSelect();
-        TameMagic.Instance.ResetBigCard();
+        ParkScope.Instance.ResetBigCard();
     }
 
     public void BeSelect()
@@ -123,7 +125,7 @@ public class MiniCard : MonoBehaviour
         }
 
         LocalCommonData.CurrentCardId = cardId;
-        TameMagic.Instance.SelectOneCard();
+        ParkScope.Instance.SelectOneCard();
     }
 
 
@@ -157,6 +159,6 @@ public class MiniCard : MonoBehaviour
 
     private bool CheckUnlock()
     {
-        return CardManager.Instance.GetFinishCardNum() < unlockLine;
+        return CardManager.Instance.GetCurLevel().Key < unlockLine;
     }
 }

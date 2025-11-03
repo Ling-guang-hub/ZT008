@@ -38,7 +38,7 @@ public class TimeBarController : MonoBehaviour
 
     public Button addCardBtn;
 
-    private static readonly string _maxStr = "Max !!!";
+    private static readonly string MaxStr = "Max !!!";
 
     [FormerlySerializedAs("baseCardIconAtlas")]
 
@@ -51,7 +51,7 @@ public class TimeBarController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        PostDeed();
+        LintIraq();
     }
 
 
@@ -60,7 +60,7 @@ public class TimeBarController : MonoBehaviour
     }
 
 
-    private void PostDeed()
+    private void LintIraq()
     {
         _cardIconSpritesDict = new Dictionary<string, Sprite>();
 
@@ -78,45 +78,45 @@ public class TimeBarController : MonoBehaviour
 
     public void Start()
     {
-        addCardBtn.onClick.AddListener(SowPartKnap);
+        addCardBtn.onClick.AddListener(SeeAmidStop);
 
 
-        MessageCenterLogic.GetInstance().Register(CConfig.mg_GetCardByAd, (md) => { ShowCardNum(); });
+        // MessageCenterLogic.GetInstance().Register(CConfig.mg_GetCardByAd, (md) => { ShowCardNum(); });
 
-        MessageCenterLogic.GetInstance().Register(CConfig.mg_ShowCardMaxStr, (md) => { ShowMaxData(); });
+        // MessageCenterLogic.GetInstance().Register(CConfig.mg_ShowCardMaxStr, (md) => { ShowMaxData(); });
 
-        MessageCenterLogic.GetInstance().Register(CConfig.mg_ShowCardTime, (md) => { ShowTimeData(); });
+        // MessageCenterLogic.GetInstance().Register(CConfig.mg_ShowCardTime, (md) => { ShowTimeData(); });
     }
 
     public void ResetIcon()
     {
-        iconImg.sprite = _cardIconSpritesDict[LocalCardData.CardTypeDict[LocalCommonData.CurrentCardId].ToString()];
+        // iconImg.sprite = _cardIconSpritesDict[LocalCardData.CardTypeDict[LocalCommonData.CurrentCardId].ToString()];
     }
 
 
-    private void SowPartKnap()
+    private void SeeAmidStop()
     {
         PanelManager.Instance.ShowCardStore();
     }
 
 
-    private void ShowCardNum()
-    {
-        ResetIcon();
-        int cardNum = GameDataManager.GetInstance().GetCard();
-        cardNumText.text = cardNum + "";
-    }
+    // private void ShowCardNum()
+    // {
+    //     ResetIcon();
+    //     int cardNum = GameDataManager.GetInstance().GetCard();
+    //     cardNumText.text = cardNum + "";
+    // }
 
-    private void ShowTimeData()
-    {
-        if (!addCardBtn.gameObject.activeInHierarchy) return;
-        TimeSpan t = TimeSpan.FromSeconds(CardTimeManager.GetInstance().GetCurTime());
-        timeText.text = $"{t.Hours:00}:{t.Minutes:00}:{t.Seconds:00}";
-    }
+    // private void ShowTimeData()
+    // {
+    //     // if (!addCardBtn.gameObject.activeInHierarchy) return;
+    //     // TimeSpan t = TimeSpan.FromSeconds(CardTimeManager.GetInstance().GetCurTime());
+    //     // timeText.text = $"{t.Hours:00}:{t.Minutes:00}:{t.Seconds:00}";
+    // }
 
-    private void ShowMaxData()
-    {
-        timeText.text = _maxStr;
-        ShowCardNum();
-    }
+    // private void ShowMaxData()
+    // {
+    //     timeText.text = MaxStr;
+    //     ShowCardNum();
+    // }
 }

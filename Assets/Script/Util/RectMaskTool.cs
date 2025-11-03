@@ -48,7 +48,7 @@ public class RectMaskTool : BaseUIForms
             targetOffsetX = 400f;
             targetOffsetY = 360f;
             targetPosX = 0f;
-            targetPosY = -15f;
+            targetPosY = -65f;
         }
         else
         {
@@ -56,7 +56,7 @@ public class RectMaskTool : BaseUIForms
             targetOffsetX = 445;
             targetOffsetY = 405;
             targetPosX = 0f;
-            targetPosY = -5;
+            targetPosY = -75;
         }
     }
 

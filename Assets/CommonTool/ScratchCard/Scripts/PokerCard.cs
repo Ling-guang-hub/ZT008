@@ -74,18 +74,20 @@ public class PokerCard : BaseCard
                 LocalRewardData.CompleteData.HasCoin = true;
                 LocalRewardData.CompleteData.CoinAmount += (int)reward.Amount;
                 LocalRewardData.ShowRewardPanel = true;
-                LocalRewardData.CompleteData.CoinPos.Add(new KeyValuePair<int, Vector3>(reward.Amount, rewardPos));
+                LocalRewardData.CompleteData.CoinPos.Add(new KeyValuePair<decimal, Vector3>(reward.Amount, rewardPos));
                 break;
             case CommonRewardType.Cash:
                 LocalRewardData.CompleteData.HasCash = true;
                 LocalRewardData.CompleteData.CashAmount += (decimal)reward.Amount;
                 LocalRewardData.ShowRewardPanel = true;
-                LocalRewardData.CompleteData.CashPos.Add(new KeyValuePair<int, Vector3>(reward.Amount, rewardPos));
+                LocalRewardData.CompleteData.CashPos.Add(new KeyValuePair<decimal, Vector3>(reward.Amount, rewardPos));
                 break;
             case CommonRewardType.Goods:
                 LocalRewardData.CompleteData.CollectsPos.Add(
                     new KeyValuePair<int, Vector3>(reward.GoodsIdx, rewardPos));
                 // LocalRewardData.CompleteData.CollectsPos.Add(rewardPos);
+                CollectManager.Instance.needFly = true;
+                CollectManager.Instance.curType = reward.CollectType;
                 break;
         }
     }
@@ -109,14 +111,16 @@ public class PokerCard : BaseCard
 
     private void SetItemGroupImg()
     {
-        int randIdx = Random.Range(0,  userPokers.Count);
+        
+        List<BaseRewardItemData> rewardDataList = GetRewardList(userPokers.Count);
+
         for (int i = 0; i < userPokers.Count; i++)
         {
-            BaseRewardItemData reward = GetReward();
-            if (i == randIdx && IsSpecialCard)
-            {
-                reward = GetEffectiveReward();
-            }
+            BaseRewardItemData reward = rewardDataList[i];
+            // if (i == randIdx && IsSpecialCard)
+            // {
+            //     reward = GetEffectiveReward();
+            // }
 
             // DealSpecial(reward);
             rewardItemList[i].GetComponent<BaseCardItem>().ShowItem(reward);
@@ -131,6 +135,38 @@ public class PokerCard : BaseCard
         }
     }
 
+    private List<BaseRewardItemData> GetRewardList(int lenght)
+    {
+        int randIdx = Random.Range(0, lenght);
+        bool hasGoods = false;
+        List<BaseRewardItemData> rewardList = new List<BaseRewardItemData>();
+        for (int i = 0; i < lenght; i++)
+        {
+            BaseRewardItemData rewardData = GetReward();
+            if (i == randIdx && IsSpecialCard)
+            {
+                rewardData = GetEffectiveReward();
+            }
+            if (!rewardData.IsThanks && rewardData.Type == CommonRewardType.Goods)
+            {
+                if (hasGoods)
+                {
+                    while (rewardData.Type == CommonRewardType.Goods)
+                    {
+                        rewardData = GetEffectiveReward(); 
+                    }
+                }
+                else
+                {
+                    hasGoods = true;
+                }
+            }
+            rewardList.Add(rewardData);
+        }
+
+        return rewardList;
+    }
+    
     public override float DoWinAnim()
     {
         if (BaseAnimItemList.Count < 1) return 0f;

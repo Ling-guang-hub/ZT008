@@ -14,195 +14,100 @@ public class GameDataManager : MonoSingleton<GameDataManager>
 
     public void InitGameData()
     {
-// #if SOHOShop
-//
-//         // SOHOShopManager.instance.InitSOHOShop();
-//         // 提现商店初始化
-//         // 提现商店中的金币、现金和amazon卡均为double类型，参数请根据具体项目自行处理
-//         SOHOShopManager.instance.InitSOHOShopAction(
-//             GetShopCash,
-//             GetShopCoin,
-//             GetShopAmazon, // amazon
-//             (subToken) => { AddCash(-subToken); },
-//             (subGold) => { SubCoin(subGold); },
-//             (subAmazon) => { });
-// #endif
     }
 
 
-    // public double GetCash()
-    // {
-    //     return CashOutManager.GetInstance().Money;
-    // }
-    // public void AddCash(double cash)
-    // {
-    //     CashOutManager.GetInstance().AddMoney((float)cashNum);
-    // }
-
-    public double GetCash()
-    {
-        return CashOutManager.GetInstance().Money;
-    }
-
-    public void AddCash(double cash)
-    {
-        CashOutManager.GetInstance().AddMoney((float)cash);
-    }
-
-
-    // 金币
     public int GetCoin()
     {
-        return (int)CashOutManager.GetInstance().Money;
-        // return SaveDataManager.GetInt(CConfig.sv_GoldCoin);
+        return SaveDataManager.GetInt(CConfig.sv_GoldCoin);
     }
 
 
-    public void SubCoin(double coin)
+    public void SubCoin(int coin)
     {
-        if (GetCoin() - coin < 0) return;
-        int thisCoin = int.Parse(coin.ToString());
-        SaveDataManager.SetInt(CConfig.sv_GoldCoin,
-            GetCoin() - thisCoin);
-    }
+        int oldCoin = GetCoin();
+        if (oldCoin - coin < 0) return;
+        PostEventScript.GetInstance().SendEvent("108" + LocalCommonData.CurrentCardId);
 
-    // public void SubCash(decimal thisCash)
-    // {
-    //     // decimal thisCash = decimal.Parse(cash.ToString());
-    //     if (GetCash() - thisCash < 0) return;
-    //     SaveDataManager.SetDecimal(CConfig.sv_Cash,
-    //         GetCash() + thisCash);
-    // }
+        SaveDataManager.SetInt(CConfig.sv_GoldCoin,
+            oldCoin - coin);
+        MessageCenterLogic.GetInstance().Send(CConfig.mg_SubCoin, new MessageData(oldCoin));
+    }
 
 
     public void AddCoin(int coin)
     {
-        CashOutManager.GetInstance().AddMoney((float)coin);
-
-        // if (coin <= 0) return;
-        //
-        // SaveDataManager.SetInt(CConfig.sv_GoldCoin,
-        //     GetCoin() + coin);
-        // SaveDataManager.SetInt(CConfig.sv_CumulativeGoldCoin,
-        //     SaveDataManager.GetInt(CConfig.sv_CumulativeGoldCoin) + coin);
+        if(coin < 0) return;
+        SaveDataManager.SetInt(CConfig.sv_GoldCoin, GetCoin() + coin);
+        SaveDataManager.SetInt(CConfig.sv_CumulativeGoldCoin, SaveDataManager.GetInt(CConfig.sv_CumulativeGoldCoin) + coin);
     }
 
-    // public decimal GetCash()
+    public void AddMoney(decimal money)
+    {
+        if(money < 0) return;
+        CashOutManager.GetInstance().AddMoney((float)money);
+    }
+
+
+    public decimal GetMoney()
+    {
+        float money = CashOutManager.GetInstance().Money;
+        return Convert.ToDecimal(money);
+    }
+
+
+    // public void TakeCard()
     // {
-    //     return SaveDataManager.GetDecimal(CConfig.sv_Cash);
+    //     TakeCard(LocalCommonData.CurrentCardId);
     // }
 
-    // public void AddCash(double thisCash)
+    // public void TakeCard(int cardId)
     // {
-    //     decimal cash = decimal.Parse(thisCash.ToString());
-    //
-    //     if (cash < 0)
-    //     {
-    //         SubCash(cash);
-    //     }
-    //     else
-    //     {
-    //         AddThisCash(cash);
-    //     }
-    //
-    //     // SaveDataManager.SetDecimal(CConfig.sv_Cash,
-    //     //     GetCash() + cash);
-    //     // SaveDataManager.SetDecimal(CConfig.sv_CumulativeCash,
-    //     //     SaveDataManager.GetDecimal(CConfig.sv_CumulativeCash) + cash);
+    //     PostEventScript.GetInstance().SendEvent("108" + cardId);
+    //     // SaveDataManager.SetInt(CConfig.sv_CardNum + cardId, GetCard(cardId) - 1);
     // }
 
-    // private void AddThisCash(decimal cash)
+    // public void AddCard(int num)
     // {
-    //     if (cash <= 0) return;
-    //
-    //     SaveDataManager.SetDecimal(CConfig.sv_Cash,
-    //         GetCash() + cash);
-    //     SaveDataManager.SetDecimal(CConfig.sv_CumulativeCash,
-    //         SaveDataManager.GetDecimal(CConfig.sv_CumulativeCash) + cash);
-    //     // SOHOShopManager.instance.UpdateCash();
+    //     AddCard(num, LocalCommonData.CurrentCardId);
     // }
 
-    // public List<int> GetGoods()
+    // public void AddCard(int num, int cardId)
     // {
-    //     int[] goodsArr = SaveDataManager.GetIntArray(CConfig.sv_Goods);
-    //     return goodsArr.ToList();
+    //     SaveDataManager.SetInt(CConfig.sv_CardNum + cardId, num + GetCard(cardId));
+    // }
+
+    // public int GetCard()
+    // {
+    //     return GetCard(LocalCommonData.CurrentCardId);
     // }
 
 
-    // public bool AddGoods(int idx)
+    // public int GetCard(int carId)
     // {
-    //     List<int> list = GetGoods();
-    //     if (list.Contains(idx)) return false;
-    //     list.Add(idx);
-    //     SaveDataManager.SetIntArray(CConfig.sv_Goods, list.ToArray());
-    //     return true;
+    //     return SaveDataManager.GetInt(CConfig.sv_CardNum + carId);
     // }
 
-    // public void CleanGoods()
+    // public void SetLastCardTime(long time = 0)
     // {
-    //     SaveDataManager.SetIntArray(CConfig.sv_Goods, new List<int>().ToArray());
+    //     SetLastCardTime(LocalCommonData.CurrentCardId, time);
     // }
 
-    // public void SetNewUserGoods()
+    // public void SetLastCardTime(int cardId, long time = 0)
     // {
-    //     // show  y w h e e l  for new user 
-    //     List<int> thisList = new List<int>() { 4, 5, 6, 7, 8, 9 };
-    //     SaveDataManager.SetIntArray(CConfig.sv_Goods, thisList.ToArray());
+    //     long timestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds() - time;
+    //     SaveDataManager.SetLong(CConfig.sv_LastCardTime + cardId, timestamp);
     // }
 
+    // public long GetLastCardTime()
+    // {
+    //     return GetLastCardTime(LocalCommonData.CurrentCardId);
+    // }
 
-    public void TakeCard()
-    {
-        TakeCard(LocalCommonData.CurrentCardId);
-    }
-
-    public void TakeCard(int cardId)
-    {
-        PostEventScript.GetInstance().SendEvent("108" + cardId);
-        SaveDataManager.SetInt(CConfig.sv_CardNum + cardId, GetCard(cardId) - 1);
-    }
-
-    public void AddCard(int num)
-    {
-        AddCard(num, LocalCommonData.CurrentCardId);
-    }
-
-    public void AddCard(int num, int cardId)
-    {
-        SaveDataManager.SetInt(CConfig.sv_CardNum + cardId, num + GetCard(cardId));
-    }
-
-    public int GetCard()
-    {
-        return GetCard(LocalCommonData.CurrentCardId);
-    }
-
-
-    public int GetCard(int carId)
-    {
-        return SaveDataManager.GetInt(CConfig.sv_CardNum + carId);
-    }
-
-    public void SetLastCardTime(long time = 0)
-    {
-        SetLastCardTime(LocalCommonData.CurrentCardId, time);
-    }
-
-    public void SetLastCardTime(int cardId, long time = 0)
-    {
-        long timestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds() - time;
-        SaveDataManager.SetLong(CConfig.sv_LastCardTime + cardId, timestamp);
-    }
-
-    public long GetLastCardTime()
-    {
-        return GetLastCardTime(LocalCommonData.CurrentCardId);
-    }
-
-    public long GetLastCardTime(int cardId)
-    {
-        return SaveDataManager.GetLong(CConfig.sv_LastCardTime + cardId);
-    }
+    // public long GetLastCardTime(int cardId)
+    // {
+    //     return SaveDataManager.GetLong(CConfig.sv_LastCardTime + cardId);
+    // }
 
     private int GetFinishedCard()
     {
@@ -212,7 +117,6 @@ public class GameDataManager : MonoSingleton<GameDataManager>
     public void AddFinishedCard()
     {
         CardType cardTaskType = LocalCardData.CardTypeDict[LocalCommonData.CurrentCardId];
-        // SOHOShopManager.instance.AddTaskValue(cardTaskType.ToString(), 1);
 
         SaveDataManager.SetInt(CConfig.sv_FinishCard, GetFinishedCard() + 1);
         SaveDataManager.SetInt(CConfig.sv_CumulativeFinishCard,
@@ -220,8 +124,9 @@ public class GameDataManager : MonoSingleton<GameDataManager>
 
         TaskManager.GetInstance().TakeTask(TaskType.Total);
         TaskManager.GetInstance().TakeTask(TaskType.Card, cardTaskType);
-
         ADManager.Instance.UpdateTrialNum(GetFinishedCard());
+        
+        MessageCenterLogic.GetInstance().Send(CConfig.mg_ShowLevelBar);
     }
 
     public KeyValuePair<long, long> GetPassportLifeTime()
@@ -312,58 +217,23 @@ public class GameDataManager : MonoSingleton<GameDataManager>
     }
 
 
-    public int GetRandomCardId()
-    {
-        List<int> copyList = new List<int>();
-        
-        LocalCardData.ActCardIds.ForEach(item => copyList.Add(item));
-
-        CardUtil.Shuffle(copyList);
-        int randomCardId = -1;
-        for (int i = 0; i < copyList.Count; i++)
-        {
-            if (copyList[i] != LocalCommonData.CurrentCardId && GetCard(copyList[i]) > 0 && CheckIsLock(copyList[i]))
-            {
-                randomCardId = copyList[i];
-                break;
-            }
-        }
-
-        return randomCardId;
-    }
-
-
-//     
-//     // 现金
-//     public double GetToken()
-//     {
-//         return ResourceCtrl.Instance.diamond.currentValue;
-//     }
-//
-//     public void AddToken(double token)
-//     {
-//         ResourceCtrl.Instance.AddItemValue(ResourceCtrl.Instance.diamond, token);
-//         if (token > 0)
-//         {
-//             SaveDataManager.SetDouble(CConfig.sv_CumulativeToken, SaveDataManager.GetDouble(CConfig.sv_CumulativeToken) + token);
-//         }
-// #if SOHOShop
-//         SOHOShopManager.instance.UpdateCash();
-// #endif
-//     }
-//
-//     //Amazon卡
-//     public double GetAmazon()
-//     {
-//         return ResourceCtrl.Instance.amazon.currentValue;
-//     }
-//
-//     public void AddAmazon(double amazon)
-//     {
-//         ResourceCtrl.Instance.AddItemValue(ResourceCtrl.Instance.amazon, amazon);
-//         if (amazon > 0)
-//         {
-//             SaveDataManager.SetDouble(CConfig.sv_CumulativeAmazon, SaveDataManager.GetDouble(CConfig.sv_CumulativeAmazon) + amazon);
-//         }
-//     }
+    // public int GetRandomCardId()
+    // {
+        // List<int> copyList = new List<int>();
+        //
+        // LocalCardData.ActCardIds.ForEach(item => copyList.Add(item));
+        //
+        // CardUtil.Shuffle(copyList);
+        // int randomCardId = -1;
+        // for (int i = 0; i < copyList.Count; i++)
+        // {
+        //     if (copyList[i] != LocalCommonData.CurrentCardId && GetCard(copyList[i]) > 0 && CheckIsLock(copyList[i]))
+        //     {
+        //         randomCardId = copyList[i];
+        //         break;
+        //     }
+        // }
+        //
+        // return randomCardId;
+    // }
 }

@@ -209,7 +209,6 @@ public class ADManager : MonoBehaviour
 #if UNITY_IOS
         Time.timeScale = 1;
         // MusicMgr.GetInstance().BgMusicSwitch = !MusicMgr.GetInstance().BgMusicSwitch;
-        MusicMgr.GetInstance().PlayBg(MusicType.SceneMusic.BGM);
 #endif
 
         isShowingAd = false;
@@ -361,7 +360,6 @@ public class ADManager : MonoBehaviour
 #if UNITY_IOS
         Time.timeScale = 1;
         // MusicMgr.GetInstance().BgMusicSwitch = !MusicMgr.GetInstance().BgMusicSwitch;
-        MusicMgr.GetInstance().PlayBg(MusicType.SceneMusic.BGM);
 #endif
         LoadInterstitial();
 

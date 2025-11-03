@@ -1,0 +1,48 @@
+
+slots_7.png
+size: 1317,683
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+777_1
+  rotate: false
+  xy: 977, 100
+  size: 172, 151
+  orig: 174, 153
+  offset: 1, 1
+  index: -1
+777_2
+  rotate: true
+  xy: 1151, 79
+  size: 172, 151
+  orig: 174, 153
+  offset: 1, 1
+  index: -1
+FX_Glow
+  rotate: true
+  xy: 977, 15
+  size: 83, 84
+  orig: 101, 101
+  offset: 9, 8
+  index: -1
+FX_Glow_BIG
+  rotate: false
+  xy: 834, 253
+  size: 481, 428
+  orig: 500, 489
+  offset: 10, 31
+  index: -1
+FX_Star
+  rotate: true
+  xy: 2, 2
+  size: 679, 830
+  orig: 800, 866
+  offset: 55, 18
+  index: -1
+flash_1
+  rotate: false
+  xy: 834, 61
+  size: 141, 190
+  orig: 143, 192
+  offset: 1, 1
+  index: -1

@@ -57,10 +57,17 @@ public class MainManager : MonoBehaviour
 
         SaveDataManager.SetInt(CConfig.sv_BackHomeCount, 0);
 
-        SaveDataManager.SetInt(CConfig.sv_GoldCoin, 0);
+        //TODO
+        
+        // SaveDataManager.SetInt(CConfig.sv_GoldCoin, 0);
+        SaveDataManager.SetInt(CConfig.sv_GoldCoin, 200);
         SaveDataManager.SetInt(CConfig.sv_CumulativeGoldCoin, 0);
-        SaveDataManager.SetDecimal(CConfig.sv_Cash, decimal.Zero);
-        SaveDataManager.SetDecimal(CConfig.sv_CumulativeCash, decimal.Zero);
+        
+        // trans to card cost
+        SaveDataManager.SetInt(CConfig.sv_Cash2, 0);
+        SaveDataManager.SetInt(CConfig.sv_CumulativeCash2, 0);
+        // SaveDataManager.SetDecimal(CConfig.sv_Cash, decimal.Zero);
+        // SaveDataManager.SetDecimal(CConfig.sv_CumulativeCash, decimal.Zero);
         // GameDataManager.GetInstance().SetNewUserGoods();
 
         SaveDataManager.SetInt(CConfig.sv_FinishCard, 0);
@@ -79,6 +86,11 @@ public class MainManager : MonoBehaviour
         LocalCommonData.CurrentCardId = NetInfoMgr.instance.GameData.focus_card;
         LocalCommonData.RandomCoinStart = NetInfoMgr.instance.GameData.random_coin[0];
         LocalCommonData.RandomCoinEnd = NetInfoMgr.instance.GameData.random_coin[1];
+        LocalCommonData.RandomCashStart = NetInfoMgr.instance.GameData.random_cash[0];
+        LocalCommonData.RandomCashEnd = NetInfoMgr.instance.GameData.random_cash[1];
+
+        LocalCommonData.CashStep = NetInfoMgr.instance.GameData.cash_step;
+        LocalCommonData.CoinStep = NetInfoMgr.instance.GameData.coin_step;
 
         // get active cards  
         LocalCardData.ActCardIds = NetInfoMgr.instance.GameData.active_card;
@@ -104,13 +116,12 @@ public class MainManager : MonoBehaviour
                 WheelValue = param.wheel_value,
                 CardName = param.name,
                 CardDesc = param.desc,
+                CardCost = param.cost,
                 RewardWeight = new List<LocalCardWeight>()
             };
 
             foreach (NetWeightData weightData in param.card_weight)
             {
-                // if (weightData.type == "Goods"||weightData.type.Contains("Cash") ) continue;
-                if (weightData.type.Contains("Cash")) continue;
                 LocalCardWeight localWeight = NetWeightToLocal(weightData);
                 localParam.RewardWeight.Add(localWeight);
             }
@@ -155,14 +166,10 @@ public class MainManager : MonoBehaviour
                 break;
             case "Cash":
                 localWeight.Type = CardRewardType.Cash;
-                if (CommonUtil.IsApple())
-                {
-                    localWeight.Type = CardRewardType.Coin;
-                }
-
                 break;
             case "Goods":
                 localWeight.Type = CardRewardType.Goods;
+                localWeight.CollectType = StringUtil.ToEnum<CollectType>(netData.goods_type);
                 break;
             case "Thanks":
                 localWeight.Type = CardRewardType.Thanks;
@@ -170,11 +177,6 @@ public class MainManager : MonoBehaviour
                 break;
             case "DoubleCash":
                 localWeight.Type = CardRewardType.Cash;
-                if (CommonUtil.IsApple())
-                {
-                    localWeight.Type = CardRewardType.Coin;
-                }
-
                 localWeight.RewardMulti = 2;
                 break;
             case "DoubleCoin":
@@ -211,10 +213,11 @@ public class MainManager : MonoBehaviour
 
         GameDataManager.GetInstance().InitGameData();
 
+        CollectManager.Instance.InitData();
         WheelBarManager.GetInstance().InitData();
         TaskManager.GetInstance().TaskDataInit();
 
-        UIManager.GetInstance().ShowUIForms(nameof(TameMagic));
+        UIManager.GetInstance().ShowUIForms(nameof(ParkScope));
 
         ready = true;
 

@@ -1,0 +1,83 @@
+
+slots_Gem_3.png
+size: 436,800
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+777_1
+  rotate: false
+  xy: 2, 35
+  size: 171, 137
+  orig: 173, 140
+  offset: 1, 1
+  index: -1
+777_2
+  rotate: false
+  xy: 175, 2
+  size: 171, 137
+  orig: 173, 140
+  offset: 1, 1
+  index: -1
+FX_Glow
+  rotate: true
+  xy: 348, 40
+  size: 83, 84
+  orig: 101, 101
+  offset: 9, 8
+  index: -1
+FX_Glow_BIG
+  rotate: true
+  xy: 2, 317
+  size: 481, 428
+  orig: 500, 489
+  offset: 10, 31
+  index: -1
+FX_Star
+  rotate: true
+  xy: 194, 141
+  size: 174, 185
+  orig: 232, 251
+  offset: 29, 33
+  index: -1
+c_s1
+  rotate: true
+  xy: 381, 259
+  size: 56, 53
+  orig: 58, 54
+  offset: 0, 1
+  index: -1
+c_s2
+  rotate: true
+  xy: 381, 125
+  size: 37, 38
+  orig: 47, 60
+  offset: 5, 11
+  index: -1
+c_s3
+  rotate: false
+  xy: 381, 210
+  size: 47, 47
+  orig: 52, 57
+  offset: 3, 5
+  index: -1
+flash_1
+  rotate: true
+  xy: 2, 174
+  size: 141, 190
+  orig: 143, 192
+  offset: 1, 1
+  index: -1
+g_s_1
+  rotate: true
+  xy: 348, 5
+  size: 33, 34
+  orig: 35, 36
+  offset: 1, 1
+  index: -1
+g_s_2
+  rotate: false
+  xy: 381, 164
+  size: 47, 44
+  orig: 49, 46
+  offset: 1, 1
+  index: -1

@@ -145,18 +145,20 @@ public class FootballCard : BaseCard
                 LocalRewardData.CompleteData.HasCoin = true;
                 LocalRewardData.CompleteData.CoinAmount += (int)rewardData.Amount;
                 LocalRewardData.ShowRewardPanel = true;
-                LocalRewardData.CompleteData.CoinPos.Add(new KeyValuePair<int, Vector3>(rewardData.Amount, rewardPos));
+                LocalRewardData.CompleteData.CoinPos.Add(new KeyValuePair<decimal, Vector3>(rewardData.Amount, rewardPos));
                 break;
             case CommonRewardType.Cash:
                 LocalRewardData.CompleteData.HasCash = true;
                 LocalRewardData.CompleteData.CashAmount += (decimal)rewardData.Amount;
                 LocalRewardData.ShowRewardPanel = true;
-                LocalRewardData.CompleteData.CashPos.Add(new KeyValuePair<int, Vector3>(rewardData.Amount, rewardPos));
+                LocalRewardData.CompleteData.CashPos.Add(new KeyValuePair<decimal, Vector3>(rewardData.Amount, rewardPos));
                 break;
             case CommonRewardType.Goods:
                 // LocalRewardData.CompleteData.CollectsPos.Add(rewardPos);
                 LocalRewardData.CompleteData.CollectsPos.Add(
                     new KeyValuePair<int, Vector3>(rewardData.GoodsIdx, rewardPos));
+                CollectManager.Instance.needFly = true;
+                CollectManager.Instance.curType = rewardData.CollectType;
                 break;
         }
     }

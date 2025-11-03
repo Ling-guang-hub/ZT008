@@ -40,42 +40,42 @@ public class TimeBarCtrl: MonoBehaviour
 
     private void Awake()
     {
-        PostDeed();
+        // LintIraq();
     }
 
 
-    private void PostDeed()
-    {
-        _cardIconSpritesDict = new Dictionary<string, Sprite>();
-
-        Sprite[] cardIconSprite = new Sprite[baseCardIconAtlas.spriteCount];
-        baseCardIconAtlas.GetSprites(cardIconSprite);
-        foreach (Sprite sprite in cardIconSprite)
-        {
-            string originalName = sprite.name.Replace("(Clone)", "");
-            _cardIconSpritesDict[originalName] = sprite;
-        }
-
-        ResetIcon();
-    }
+    // private void LintIraq()
+    // {
+    //     _cardIconSpritesDict = new Dictionary<string, Sprite>();
+    //
+    //     Sprite[] cardIconSprite = new Sprite[baseCardIconAtlas.spriteCount];
+    //     baseCardIconAtlas.GetSprites(cardIconSprite);
+    //     foreach (Sprite sprite in cardIconSprite)
+    //     {
+    //         string originalName = sprite.name.Replace("(Clone)", "");
+    //         _cardIconSpritesDict[originalName] = sprite;
+    //     }
+    //
+    //     ResetIcon();
+    // }
 
 
     public void Start()
     {
-        MessageCenterLogic.GetInstance().Register(CConfig.mg_GetCardByAd, (md) => { ShowCardNum(); });
+        MessageCenterLogic.GetInstance().Register(CConfig.mg_ShowSuperCardRate, (md) => { ShowCardNum(); });
     }
 
-    private void ResetIcon()
-    {
-        iconImg.sprite = _cardIconSpritesDict[LocalCardData.CardTypeDict[LocalCommonData.CurrentCardId].ToString()];
-    }
+    // private void ResetIcon()
+    // {
+    //     iconImg.sprite = _cardIconSpritesDict[LocalCardData.CardTypeDict[LocalCommonData.CurrentCardId].ToString()];
+    // }
 
 
     private void ShowCardNum()
     {
-        ResetIcon();
-        int cardNum = GameDataManager.GetInstance().GetCard();
-        cardNumText.text = cardNum + "";
+        // ResetIcon();
+        // int cardNum = GameDataManager.GetInstance().GetCard();
+        // cardNumText.text = cardNum + "";
         superRateText.text = CardManager.Instance.GetNextCardRate() + "%";
     }
 

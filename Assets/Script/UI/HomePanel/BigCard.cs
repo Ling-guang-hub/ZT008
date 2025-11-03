@@ -20,13 +20,13 @@ public class BigCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
 {
     [FormerlySerializedAs("cardImg")]
 
-    public Image SoarBog;
+    public Image CaneGap;
 
     [FormerlySerializedAs("baseBigCardAtlas")]
 
 
-    public SpriteAtlas KierWebKnapChimp;
-    private Dictionary<string, Sprite> _SetKnapTorontoPray;
+    public SpriteAtlas CoatBidStopMiami;
+    private Dictionary<string, Sprite> _OurStopProgramTopi;
 
     [FormerlySerializedAs("cardType")]
 
@@ -37,6 +37,11 @@ public class BigCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
 
 
     public int cardId;
+
+    [FormerlySerializedAs("costText")]
+
+
+    public Text BushIraq;
 
     private Vector3 _offset;
 
@@ -69,7 +74,7 @@ public class BigCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
 
         _offsetX = _endPosX - _startX;
 
-        TameMagic.Instance.BigCardDoMove(_offsetX);
+        ParkScope.Instance.BigCardDoMove(_offsetX);
 
         _startX = _endPosX;
     }
@@ -85,24 +90,25 @@ public class BigCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
     private void DoSelect(bool isLeft)
     {
         clickFlag = false;
-        TameMagic.Instance.ClickNextBtn(!isLeft);
+        ParkScope.Instance.ClickNextBtn(!isLeft);
     }
 
 
-    public void PostDeed()
+    public void LintIraq()
     {
         clickFlag = true;
 
-        _SetKnapTorontoPray = new Dictionary<string, Sprite>();
-        Sprite[] bigCardSprite = new Sprite[KierWebKnapChimp.spriteCount];
-        KierWebKnapChimp.GetSprites(bigCardSprite);
+        _OurStopProgramTopi = new Dictionary<string, Sprite>();
+        Sprite[] bigCardSprite = new Sprite[CoatBidStopMiami.spriteCount];
+        CoatBidStopMiami.GetSprites(bigCardSprite);
         foreach (Sprite sprite in bigCardSprite)
         {
             string originalName = sprite.name.Replace("(Clone)", "");
-            _SetKnapTorontoPray[originalName] = sprite;
+            _OurStopProgramTopi[originalName] = sprite;
         }
+        CaneGap.sprite = _OurStopProgramTopi[cardType.ToString()];
+        BushIraq.text = LocalCardData.CardParamDict[cardId].CardCost + "";
 
-        SoarBog.sprite = _SetKnapTorontoPray[cardType.ToString()];
     }
 
 
@@ -125,7 +131,7 @@ public class BigCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
                 DoSelect(false);
                 return;
             default:
-                TameMagic.Instance.BigCardDoHome();
+                ParkScope.Instance.BigCardDoHome();
                 break;
         }
     }

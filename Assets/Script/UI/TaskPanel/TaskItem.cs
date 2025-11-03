@@ -14,7 +14,7 @@ public class TaskItem : MonoBehaviour
     [FormerlySerializedAs("cashImg")]
 
 
-    public Image PulpBog;
+    public Image LikeGap;
 
     [FormerlySerializedAs("cainImg")]
 
@@ -24,7 +24,7 @@ public class TaskItem : MonoBehaviour
     [FormerlySerializedAs("rewardText")]
 
 
-    public Text CorpseBent;
+    public Text RevereIraq;
 
     [FormerlySerializedAs("taskDesc")]
 
@@ -65,9 +65,8 @@ public class TaskItem : MonoBehaviour
         {
             if (!CheckBtn()) return;
 
-            TaskManager.GetInstance().FinishTaskAndGetReward(_taskItemData.TaskName, PulpBog.transform.position);
+            TaskManager.GetInstance().FinishTaskAndGetReward(_taskItemData.TaskName, LikeGap.transform.position);
             SetFinishBtn();
-            // SOHOShopManager.instance.AddTaskValue("Daily", 1);
 
             // PostEventScript.GetInstance()
             // .SendEvent("1013", CurTaskType, TaskManager.GetInstance().CurTaskIndex.ToString());
@@ -81,17 +80,17 @@ public class TaskItem : MonoBehaviour
         _taskItemData = itemData;
         if (itemData.TaskRewardType == TaskRewardType.Cash)
         {
-            CorpseBent.color = new Color32(150, 255, 63, 255);
-            PulpBog.gameObject.SetActive(true);
+            RevereIraq.color = new Color32(150, 255, 63, 255);
+            LikeGap.gameObject.SetActive(true);
             cainImg.gameObject.SetActive(false);
-            CorpseBent.text = "$" + itemData.TaskReward;
+            RevereIraq.text = "" + itemData.TaskReward;
         }
         else
         {
-            CorpseBent.color = new Color32(255, 213, 31, 255);
-            PulpBog.gameObject.SetActive(false);
+            RevereIraq.color = new Color32(255, 213, 31, 255);
+            LikeGap.gameObject.SetActive(false);
             cainImg.gameObject.SetActive(true);
-            CorpseBent.text = "" + itemData.TaskReward;
+            RevereIraq.text = "" + itemData.TaskReward;
         }
 
         taskDesc.text = itemData.Desc;

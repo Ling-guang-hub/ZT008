@@ -74,12 +74,24 @@ public class CConfig
     /// <summary>
     /// 现金余额
     /// </summary>
-    public const string sv_Cash = "sv_Cash";
+    // public const string sv_Cash = "sv_Cash";
 
     /// <summary>
     /// 累计现金总数
     /// </summary>
     public const string sv_CumulativeCash = "sv_CumulativeCash";
+    
+    
+    /// <summary>
+    /// 第二货币  
+    /// </summary>
+    public const string sv_Cash2 = "sv_Cash2";
+
+    /// <summary>
+    /// 累计第二货币
+    /// </summary>
+    public const string sv_CumulativeCash2 = "sv_CumulativeCash2";
+    
 
     /// <summary>
     /// 钻石余额
@@ -282,6 +294,8 @@ public class CConfig
 
     public static string mg_GetCardByAd = "mg_GetCardByAd";
     
+    public static string mg_ShowSuperCardRate = "mg_ShowSuperCardRate";
+    
     public static string mg_ShowCardMaxStr = "mg_ShowCardMaxStr";
     
     public static string mg_ShowCardTime = "mg_ShowCardTime";
@@ -305,11 +319,19 @@ public class CConfig
 
     public static string mg_ShowWheelBar = "mg_ShowWheelBar";
     
+    public static string mg_ShowLevelBar = "mg_ShowLevelBar";
+    
+    public static string mg_ShowNewCardToast = "mg_ShowNewCardToast";
+    
     public static string mg_ShowWallet = "mg_ShowWallet";
 
     public static string mg_ShowCashOutText = "mg_ShowCashOutText";
     
     public static string mg_ShowCashTimeText = "mg_ShowCashTimeText";
+    
+    public static string mg_SubCoin = "mg_SubCoin";
+    
+    public static string mg_FinishFlyBox = "mg_FinishFlyBox";
     
     
     #endregion

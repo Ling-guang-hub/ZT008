@@ -4,84 +4,92 @@
       "Key": "本配置文件说明"
     },
     {
-      "Key": "TameMagic",
-      "Value": "UIPanel\\TameMagic"
+      "Key": "ParkScope",
+      "Value": "UIPanel\\ParkScope"
     },
     {
-      "Key": "SkinMagic",
-      "Value": "UIPanel\\SkinMagic"
+      "Key": "FishScope",
+      "Value": "UIPanel\\FishScope"
     },
     {
-      "Key": "FestiveMagic",
-      "Value": "UIPanel\\FestiveMagic"
+      "Key": "PuritanScope",
+      "Value": "UIPanel\\PuritanScope"
     },
     {
       "Key": "Toast",
       "Value": "UIPanel\\Common\\Toast"
     },
     {
-      "Key": "CohesionMagic",
-      "Value": "UIPanel\\CohesionMagic"
+      "Key": "GalileanScope",
+      "Value": "UIPanel\\GalileanScope"
     },
     {
-      "Key": "WebFlyMagic",
-      "Value": "UIPanel\\WebFlyMagic"
+      "Key": "BidTheScope",
+      "Value": "UIPanel\\BidTheScope"
     },
     {
-      "Key": "PlainFlyMagic",
-      "Value": "UIPanel\\PlainFlyMagic"
+      "Key": "ScentTheScope",
+      "Value": "UIPanel\\ScentTheScope"
     },
     {
-      "Key": "BulkMeMagic",
-      "Value": "UIPanel\\BulkMeMagic"
+      "Key": "GustMeScope",
+      "Value": "UIPanel\\GustMeScope"
     },
     {
-      "Key": "KnapThingMagic",
-      "Value": "UIPanel\\KnapThingMagic"
+      "Key": "StopBrawlScope",
+      "Value": "UIPanel\\StopBrawlScope"
     },
     {
-      "Key": "KnapCarbonMagic",
-      "Value": "UIPanel\\KnapCarbonMagic"
+      "Key": "StopQuincyScope",
+      "Value": "UIPanel\\StopQuincyScope"
     },
     {
-      "Key": "PuffMagic",
-      "Value": "UIPanel\\PuffMagic"
+      "Key": "UtahScope",
+      "Value": "UIPanel\\UtahScope"
     },
     {
-      "Key": "TraceMagic",
-      "Value": "UIPanel\\TraceMagic"
+      "Key": "TrendScope",
+      "Value": "UIPanel\\TrendScope"
     },
     {
-      "Key": "TraceFlashMagic",
-      "Value": "UIPanel\\TraceFlashMagic"
+      "Key": "TrendAbuseScope",
+      "Value": "UIPanel\\TrendAbuseScope"
     },
     {
-      "Key": "TraceWebFlyMagic",
-      "Value": "UIPanel\\TraceWebFlyMagic"
+      "Key": "TrendBidTheScope",
+      "Value": "UIPanel\\TrendBidTheScope"
     },
     {
-      "Key": "EdgeBothMagic",
-      "Value": "UIPanel\\EdgeBothMagic"
+      "Key": "SagoLiraScope",
+      "Value": "UIPanel\\SagoLiraScope"
     },
     {
-      "Key": "KeepMagic",
-      "Value": "UIPanel\\KeepMagic"
+      "Key": "BodyScope",
+      "Value": "UIPanel\\BodyScope"
+    },
+    {
+      "Key": "TaleScope",
+      "Value": "UIPanel\\TaleScope"
+    },
+    {
+      "Key": "MooseAbuseScope",
+      "Value": "UIPanel\\MooseAbuseScope"
     },
     {
       "Key": "CashOutPanel",
       "Value": "UIPanel\\CashOutPanel"
     },
     {
-      "Key": "YamLoneGourdMagic",
-      "Value": "UIPanel\\YamLoneGourdMagic"
+      "Key": "RedSearFarceScope",
+      "Value": "UIPanel\\RedSearFarceScope"
     },
     {
       "Key": "AdManagerTestPanel",
       "Value": "UIPanel\\Test\\AdManagerTestPanel"
     },
     {
-      "Key": "SpoonMagic",
-      "Value": "UIPanel\\SpoonMagic"
+      "Key": "ShapeScope",
+      "Value": "UIPanel\\ShapeScope"
     }
   ]
 }

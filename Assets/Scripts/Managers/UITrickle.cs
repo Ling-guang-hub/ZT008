@@ -26,7 +26,7 @@ public class UITrickle : PhysicistWood<UITrickle>
     {
         base.Awake();
 
-        KingChunk = transform.Find("GamePanel").gameObject;
+        KingChunk = transform.Find("FishScope").gameObject;
         InvaderChunk = transform.Find("SettingPanel").gameObject;
         DeftChunk = transform.Find("MainPanel").gameObject;
         MowChunk = transform.Find("EndPanel").gameObject;

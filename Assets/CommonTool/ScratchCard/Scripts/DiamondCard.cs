@@ -8,6 +8,7 @@
 
 using System.Collections.Generic;
 using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -122,13 +123,31 @@ public class DiamondCard : BaseCard
 
 
     //  
-    private void SetRewardItem(GameObject item, bool isSpecial)
+    private bool SetRewardItem(GameObject item, bool isSpecial, bool hasGood)
     {
         BaseRewardItemData rewardData = GetReward();
+
+
         if (isSpecial && IsSpecialCard)
         {
             rewardData = GetEffectiveReward();
         }
+
+        if (!rewardData.IsThanks)
+        {
+            if (hasGood)
+            {
+                while (rewardData.Type == CommonRewardType.Goods)
+                {
+                    rewardData = GetEffectiveReward();
+                }
+            }
+            else
+            {
+                hasGood = true;
+            }
+        }
+
 
         if (rewardData.IsThanks)
         {
@@ -149,27 +168,34 @@ public class DiamondCard : BaseCard
                     LocalRewardData.CompleteData.CoinAmount += (int)rewardData.Amount;
                     LocalRewardData.ShowRewardPanel = true;
                     LocalRewardData.CompleteData.CoinPos.Add(
-                        new KeyValuePair<int, Vector3>(rewardData.Amount, rewardPos));
+                        new KeyValuePair<decimal, Vector3>(rewardData.Amount, rewardPos));
                     break;
                 case CommonRewardType.Cash:
                     LocalRewardData.CompleteData.HasCash = true;
                     LocalRewardData.CompleteData.CashAmount += (decimal)rewardData.Amount;
                     LocalRewardData.ShowRewardPanel = true;
                     LocalRewardData.CompleteData.CashPos.Add(
-                        new KeyValuePair<int, Vector3>(rewardData.Amount, rewardPos));
+                        new KeyValuePair<decimal, Vector3>(rewardData.Amount, rewardPos));
                     break;
                 case CommonRewardType.Goods:
                     // LocalRewardData.CompleteData.CollectsPos.Add(rewardPos);
                     LocalRewardData.CompleteData.CollectsPos.Add(
                         new KeyValuePair<int, Vector3>(rewardData.GoodsIdx, rewardPos));
+                    CollectManager.Instance.needFly = true;
+                    CollectManager.Instance.curType = rewardData.CollectType;
                     break;
             }
         }
+
+        return hasGood;
     }
 
 
     private void SetItemImg(List<GameObject> itemList)
     {
+        // List<BaseRewardItemData> rewardList = GetRewardList(itemList.Count);
+        bool hasGood = false;
+
         for (int i = 0; i < itemList.Count; i++)
         {
             GameObject item = itemList[i];
@@ -177,7 +203,7 @@ public class DiamondCard : BaseCard
             if (_targetNameList.Contains(thisName))
             {
                 BaseAnimItemList.Add(item);
-                SetRewardItem(item, thisName == _specialName);
+                hasGood = SetRewardItem(item, thisName == _specialName, hasGood);
             }
             else
             {
@@ -195,6 +221,40 @@ public class DiamondCard : BaseCard
         }
     }
 
+
+    private List<BaseRewardItemData> GetRewardList(int lenght)
+    {
+        int randIdx = Random.Range(0, lenght);
+        bool hasGoods = false;
+        List<BaseRewardItemData> rewardList = new List<BaseRewardItemData>();
+        for (int i = 0; i < lenght; i++)
+        {
+            BaseRewardItemData rewardData = GetReward();
+            if (i == randIdx && IsSpecialCard)
+            {
+                rewardData = GetEffectiveReward();
+            }
+
+            if (!rewardData.IsThanks && rewardData.Type == CommonRewardType.Goods)
+            {
+                if (hasGoods)
+                {
+                    while (rewardData.Type == CommonRewardType.Goods)
+                    {
+                        rewardData = GetEffectiveReward();
+                    }
+                }
+                else
+                {
+                    hasGoods = true;
+                }
+            }
+
+            rewardList.Add(rewardData);
+        }
+
+        return rewardList;
+    }
 
     private void InitRewardItem()
     {

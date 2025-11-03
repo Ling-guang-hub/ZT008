@@ -131,16 +131,16 @@ public class PassportItem : MonoBehaviour
     {
         leftGetBtn.onClick.AddListener(() =>
         {
-            // if (EdgeBothMagic.Instance.topBar.gameObject.activeInHierarchy) return;
-            if (EdgeBothMagic.Instance.CheckCoinFly()) return;
+            // if (SagoLiraScope.Instance.topBar.gameObject.activeInHierarchy) return;
+            if (SagoLiraScope.Instance.CheckCoinFly()) return;
             MusicMgr.GetInstance().PlayEffect(MusicType.UIMusic.Button_1);
             GetLeftReward();
         });
 
         rightGetBtn.onClick.AddListener(() =>
         {
-            // if (EdgeBothMagic.Instance.topBar.gameObject.activeInHierarchy) return;
-            if (EdgeBothMagic.Instance.CheckCoinFly()) return;
+            // if (SagoLiraScope.Instance.topBar.gameObject.activeInHierarchy) return;
+            if (SagoLiraScope.Instance.CheckCoinFly()) return;
             MusicMgr.GetInstance().PlayEffect(MusicType.UIMusic.Button_1);
             ADManager.Instance.playRewardVideo((success) =>
             {
@@ -152,7 +152,7 @@ public class PassportItem : MonoBehaviour
         });
     }
 
-    public void PostDeed(int thisIdx, PassportLevelData levelData)
+    public void LintIraq(int thisIdx, PassportLevelData levelData)
     {
         _levelIdx = thisIdx;
         _levelData = levelData;
@@ -261,31 +261,32 @@ public class PassportItem : MonoBehaviour
     {
         if (_levelData.Type == CommonRewardType.Cash)
         {
-            EdgeBothMagic.Instance.AddCoinAndCash(0, Vector2.zero, _levelData.RewardNum, leftIcon.transform.position);
+            SagoLiraScope.Instance.AddCoinAndCash(0, Vector2.zero, _levelData.RewardNum, leftIcon.transform.position);
         }
         else
         {
-            EdgeBothMagic.Instance.AddCoinAndCash(_levelData.RewardNum, leftIcon.transform.position, 0, Vector2.zero);
+            SagoLiraScope.Instance.AddCoinAndCash(_levelData.RewardNum, leftIcon.transform.position, 0, Vector2.zero);
         }
 
         GameDataManager.GetInstance().SetPassportLeftReward(_levelIdx, _levelData.RewardNum);
         leftGetBtn.gameObject.SetActive(false);
         leftMask.gameObject.SetActive(true);
-        EdgeBothMagic.Instance.ResetMinLevel();
+        SagoLiraScope.Instance.ResetMinLevel();
     }
 
     private void GetRightReward()
     {
-        EdgeBothMagic.Instance.AddCoinAndCash(_levelData.CashCount, rightIcon.transform.position, 0, Vector2.zero);
+        // SagoLiraScope.Instance.AddCoinAndCash(_levelData.CashCount, rightIcon.transform.position, 0, Vector2.zero);
+        SagoLiraScope.Instance.AddCoinAndCash(0, Vector2.zero, _levelData.CashCount, rightIcon.transform.position);
         GameDataManager.GetInstance().SetPassportRightReward(_levelIdx, _levelData.CashCount);
         rightGetBtn.gameObject.SetActive(false);
         rightMask.gameObject.SetActive(true);
     }
 
-    private bool CheckCard()
-    {
-        if (CardManager.Instance.GetFinishCardNum() < _levelData.LeastCard) return false;
-
-        return true;
-    }
+    // private bool CheckCard()
+    // {
+    //     if (CardManager.Instance.GetFinishCardNum() < _levelData.LeastCard) return false;
+    //
+    //     return true;
+    // }
 }

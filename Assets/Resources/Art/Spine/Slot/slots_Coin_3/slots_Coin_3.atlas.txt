@@ -1,0 +1,83 @@
+
+slots_Coin_3.png
+size: 815,432
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+777_1
+  rotate: false
+  xy: 485, 107
+  size: 170, 147
+  orig: 172, 149
+  offset: 1, 1
+  index: -1
+777_2
+  rotate: true
+  xy: 657, 68
+  size: 170, 147
+  orig: 172, 149
+  offset: 1, 1
+  index: -1
+FX_Glow
+  rotate: false
+  xy: 485, 21
+  size: 83, 84
+  orig: 101, 101
+  offset: 9, 8
+  index: -1
+FX_Glow_BIG
+  rotate: false
+  xy: 2, 2
+  size: 481, 428
+  orig: 500, 489
+  offset: 10, 31
+  index: -1
+FX_Star
+  rotate: true
+  xy: 485, 256
+  size: 174, 185
+  orig: 232, 251
+  offset: 29, 33
+  index: -1
+c_s1
+  rotate: false
+  xy: 570, 53
+  size: 56, 52
+  orig: 58, 54
+  offset: 1, 1
+  index: -1
+c_s2
+  rotate: false
+  xy: 680, 8
+  size: 44, 58
+  orig: 47, 60
+  offset: 1, 1
+  index: -1
+c_s3
+  rotate: false
+  xy: 628, 11
+  size: 50, 55
+  orig: 52, 57
+  offset: 1, 1
+  index: -1
+flash_1
+  rotate: false
+  xy: 672, 240
+  size: 141, 190
+  orig: 143, 192
+  offset: 1, 1
+  index: -1
+g_s_1
+  rotate: false
+  xy: 726, 32
+  size: 33, 34
+  orig: 35, 36
+  offset: 1, 1
+  index: -1
+g_s_2
+  rotate: false
+  xy: 570, 7
+  size: 47, 44
+  orig: 49, 46
+  offset: 1, 1
+  index: -1

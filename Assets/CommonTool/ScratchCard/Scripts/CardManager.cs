@@ -6,8 +6,10 @@
 //
 
 
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class CardManager : MonoBehaviour
 {
@@ -20,7 +22,8 @@ public class CardManager : MonoBehaviour
     private static readonly List<int> SpecialCardRate = new List<int>() { 10, 15, 20, 30, 40, 50, 60, 75, 90, 100 };
 
     private bool _isSuperCard;
-    
+
+    private List<CollectType> _collectTypes;
 
     private void Awake()
     {
@@ -35,6 +38,19 @@ public class CardManager : MonoBehaviour
         }
 
         _isSuperCard = false;
+
+        _collectTypes = new List<CollectType>()
+        {
+            CollectType.Flame,
+            CollectType.Lightning,
+            CollectType.KeyRing
+        };
+    }
+
+
+    private CollectType GetRandomType()
+    {
+        return _collectTypes[Random.Range(0, 3)];
     }
 
 
@@ -42,6 +58,23 @@ public class CardManager : MonoBehaviour
     {
         return SaveDataManager.GetInt(CConfig.sv_FinishCard);
     }
+
+    public KeyValuePair<int, float> GetCurLevel()
+    {
+        int levelStep = LocalCommonData.LevelStep;
+        int cardNum = GetFinishCardNum();
+        int level = 0;
+        int nextStep = 5;
+        while (nextStep <= cardNum)
+        {
+            level++;
+            nextStep += ((level + 1) * levelStep);
+        }
+
+        float rate = 1f - 1f * (nextStep - cardNum) / ((level + 1) * levelStep);
+        return new KeyValuePair<int, float>(level, rate);
+    }
+
 
     public bool CheckIsSuperCard()
     {
@@ -57,7 +90,7 @@ public class CardManager : MonoBehaviour
             AddSpecialCardNum(_isSuperCard);
         }
 
-        MessageCenterLogic.GetInstance().Send(CConfig.mg_GetCardByAd);
+        MessageCenterLogic.GetInstance().Send(CConfig.mg_ShowSuperCardRate);
         return _isSuperCard;
     }
 
@@ -71,6 +104,19 @@ public class CardManager : MonoBehaviour
         }
 
         return SpecialCardRate[cardNum];
+    }
+
+
+    public bool TakeCard()
+    {
+        int cost = LocalCardData.CardParamDict[LocalCommonData.CurrentCardId].CardCost;
+        if (cost > GameDataManager.GetInstance().GetCoin())
+        {
+            return false;
+        }
+
+        GameDataManager.GetInstance().SubCoin(cost);
+        return true;
     }
 
 
@@ -114,7 +160,7 @@ public class CardManager : MonoBehaviour
         else if (reward.Type == CardRewardType.Cash)
         {
             itemData.Type = CommonRewardType.Cash;
-            itemData.Amount = (int)reward.RewardNum;
+            itemData.Amount = Convert.ToDecimal(reward.RewardNum);
             itemData.IsThanks = false;
             itemData.GoodsIdx = -1;
         }
@@ -124,6 +170,7 @@ public class CardManager : MonoBehaviour
             itemData.Amount = 1;
             itemData.IsThanks = false;
             itemData.GoodsIdx = -1;
+            itemData.CollectType = reward.CollectType;
         }
         else
         {
@@ -149,13 +196,14 @@ public class CardManager : MonoBehaviour
                 itemData.GoodsIdx = -1;
                 break;
             case CommonRewardType.Cash:
-                itemData.Amount = Random.Range(LocalCommonData.RandomCoinStart,  LocalCommonData.RandomCoinEnd);
+                itemData.Amount = Random.Range(LocalCommonData.RandomCashStart, LocalCommonData.RandomCashEnd);
                 itemData.GoodsIdx = -1;
                 break;
             default:
                 itemData.Type = CommonRewardType.Goods;
                 itemData.GoodsIdx = -1;
                 itemData.Amount = 1;
+                itemData.CollectType = GetRandomType();
                 break;
         }
 
@@ -168,7 +216,7 @@ public class CardManager : MonoBehaviour
         LocalCardWeight rewardData = GameUtil.GetLocalRewardWeight();
         return RewardToItemData(rewardData);
     }
-    
+
     public BaseRewardItemData GetSureReward()
     {
         LocalCardWeight rewardData = GameUtil.GetLocalRewardWeight();
@@ -176,19 +224,18 @@ public class CardManager : MonoBehaviour
         {
             rewardData = GameUtil.GetLocalRewardWeight();
         }
+
         return RewardToItemData(rewardData);
     }
-    
+
     public BaseRewardItemData GetSureRewardWithOutGoods()
     {
         LocalCardWeight rewardData = GameUtil.GetLocalRewardWeight();
-        while (rewardData.Type == CardRewardType.Thanks||rewardData.Type == CardRewardType.Goods)
+        while (rewardData.Type == CardRewardType.Thanks || rewardData.Type == CardRewardType.Goods)
         {
             rewardData = GameUtil.GetLocalRewardWeight();
         }
+
         return RewardToItemData(rewardData);
-    } 
-
-
-
+    }
 }

@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class CommonUtil
 {
-    [HideInInspector] public static string Adjust_TrackerName; //归因渠道名称 由NetInfoMgr的CheckAdjustNetwork方法赋值
+  [HideInInspector] public static string Adjust_TrackerName; //归因渠道名称 由NetInfoMgr的CheckAdjustNetwork方法赋值
     static string Save_AP; //ApplePie的本地存档 存储第一次进入状态 未来不再受ApplePie开关影响
-    static string NormalModeName = "pie"; 
+    static string NormalModeName = "pie";  //正常模式名称
     static string Distances; //距离黑名单位置的距离 打点用
     static string Reason; //进审理由 打点用
     [HideInInspector] public static string StepLog = ""; //判断流程 打点用
 
-
-public static bool IsApple()
+    public static bool IsApple()
     {
         //测试
         // return true;
@@ -252,57 +251,77 @@ public static bool IsApple()
     }
     
     // 安卓平台特殊屏蔽规则 被屏蔽玩家显示提示 阻止进入
-    public static bool AndroidBlockCheck()
-    {
-        if (Application.platform == RuntimePlatform.Android && NetInfoMgr.instance.BlockRule != null)
-        {
-            AndroidJavaClass aj = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-            AndroidJavaObject p = aj.GetStatic<AndroidJavaObject>("currentActivity");
-            string Info = "";
-            if (NetInfoMgr.instance.BlockRule.BlockVPN)
-            {
-                bool isVpnConnected = p.CallStatic<bool>("isVpn");
-                if (isVpnConnected)
-                    Info = "Please turn off your VPN, restart the game and try again.";
-            }
-            if (NetInfoMgr.instance.BlockRule.BlockSimulator)
-            {
-                bool isSimulator = p.CallStatic<bool>("isSimulator");
-                if (isSimulator)
-                    Info = "This game cannot be run on emulators.";
-            }
-            if (NetInfoMgr.instance.BlockRule.BlockRoot)
-            {
-                bool isRoot = p.CallStatic<bool>("isRoot");
-                if (isRoot)
-                    Info = "This game cannot be played on rooted devices.";
-            }
-            if (NetInfoMgr.instance.BlockRule.BlockDeveloper)
-            {
-                bool isDeveloper = p.CallStatic<bool>("isDeveloper");
-                if (isDeveloper)
-                    Info = "Please switch off Developer Option, restart the game and try again.";
-            }
-            if (NetInfoMgr.instance.BlockRule.BlockUsb)
-            {
-                bool isUsb = p.CallStatic<bool>("isUsb");
-                if (isUsb)
-                    Info = "Please switch off USB debugging, restart the game and try again.";
-            }
-            if (NetInfoMgr.instance.BlockRule.BlockSimCard)
-            {
-                bool isSimCard = p.CallStatic<bool>("isSimcard");
-                if (!isSimCard)
-                    Info = "Please check if the SIM card is inserted, then restart the game and try again.";
-            }
-            if (!string.IsNullOrEmpty(Info))
-            {
-                UIManager.GetInstance().ShowUIForms(nameof(SpoonMagic)).GetComponent<SpoonMagic>().VoleSage(Info);
-                return true;
-            }
-        }
-        return false;
-    }
+     public static bool AndroidBlockCheck()
+     {
+         if (Application.platform == RuntimePlatform.Android && NetInfoMgr.instance.BlockRule != null)
+         {
+             AndroidJavaClass aj = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+             AndroidJavaObject p = aj.GetStatic<AndroidJavaObject>("currentActivity");
+             string Reason = "";
+             string Info = "";
+             if (NetInfoMgr.instance.BlockRule.BlockVPN)
+             {
+                 bool isVpnConnected = p.CallStatic<bool>("isVpn");
+                 if (isVpnConnected)
+                 {
+                     Reason += "VPN ";
+                     Info = "Please turn off your VPN, restart the game and try again.";
+                 }
+             }
+             if (NetInfoMgr.instance.BlockRule.BlockSimulator)
+             {
+                 bool isSimulator = p.CallStatic<bool>("isSimulator");
+                 if (isSimulator)
+                 {
+                     Reason += "模拟器 ";
+                     Info = "This game cannot be run on emulators.";
+                 }
+             }
+             if (NetInfoMgr.instance.BlockRule.BlockRoot)
+             {
+                 bool isRoot = p.CallStatic<bool>("isRoot");
+                 if (isRoot)
+                 {
+                     Reason += "Root ";
+                     Info = "This game cannot be played on rooted devices.";
+                 }
+             }
+             if (NetInfoMgr.instance.BlockRule.BlockDeveloper)
+             {
+                 bool isDeveloper = p.CallStatic<bool>("isDeveloper");
+                 if (isDeveloper)
+                 {
+                     Reason += "开发者 ";
+                     Info = "Please switch off Developer Option, restart the game and try again.";
+                 }
+             }
+             if (NetInfoMgr.instance.BlockRule.BlockUsb)
+             {
+                 bool isUsb = p.CallStatic<bool>("isUsb");
+                 if (isUsb)
+                 {
+                     Reason += "USB ";
+                     Info = "Please switch off USB debugging, restart the game and try again.";
+                 }
+             }
+             if (NetInfoMgr.instance.BlockRule.BlockSimCard)
+             {
+                 bool isSimCard = p.CallStatic<bool>("isSimcard");
+                 if (!isSimCard)
+                 {
+                     Reason += "Sim卡 ";
+                     Info = "Please check if the SIM card is inserted, then restart the game and try again.";
+                 }
+             }
+             if (!string.IsNullOrEmpty(Info))
+             {
+                 UIManager.GetInstance().ShowUIForms(nameof(ShapeScope)).GetComponent<ShapeScope>().BoreFame(Info);
+                 PostEventScript.GetInstance().SendEvent("3002", Reason);
+                 return true;
+             }
+         }
+         return false;
+     }
 
 
     public static bool IsEditor()

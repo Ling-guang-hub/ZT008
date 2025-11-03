@@ -74,10 +74,10 @@ public class PostEventScript : MonoSingleton<PostEventScript>
         {
             valueList = new List<string>()
             {
-                SaveDataManager.GetInt(CConfig.sv_GoldCoin).ToString(),
-                SaveDataManager.GetDecimal(CConfig.sv_Cash).ToString(),
-                SaveDataManager.GetInt(CConfig.sv_CumulativeGoldCoin).ToString(CultureInfo.CurrentCulture),
-                SaveDataManager.GetDecimal(CConfig.sv_CumulativeCash).ToString(CultureInfo.InvariantCulture)
+                // SaveDataManager.GetInt(CConfig.sv_GoldCoin).ToString(),
+                // SaveDataManager.GetDecimal(CConfig.sv_Cash).ToString(),
+                // SaveDataManager.GetInt(CConfig.sv_CumulativeGoldCoin).ToString(CultureInfo.CurrentCulture),
+                // SaveDataManager.GetDecimal(CConfig.sv_CumulativeCash).ToString(CultureInfo.InvariantCulture)
                 //SaveDataManager.GetInt(SlotConfig.sv_SlotSpinCount).ToString()
             };
         }
@@ -101,9 +101,9 @@ public class PostEventScript : MonoSingleton<PostEventScript>
         }
 
 
-        StartCoroutine(SendPost(NetInfoMgr.instance.BaseUrl + "/api/client/game_progress", wwwForm,
-            (error) => { Debug.Log(error); },
-            (message) => { Debug.Log(message); }));
+        // StartCoroutine(SendPost(NetInfoMgr.instance.BaseUrl + "/api/client/game_progress", wwwForm,
+        //     (error) => { Debug.Log(error); },
+        //     (message) => { Debug.Log(message); }));
     }
 
     public void SendEvent(string event_id, string p1 = null, string p2 = null, string p3 = null)

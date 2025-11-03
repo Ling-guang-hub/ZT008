@@ -55,7 +55,7 @@ public class WheelBar : MonoBehaviour
         fxObj.gameObject.SetActive(false);
         // finishSpineObj.SetActive(false);
         // _finishSkeleton = finishSpineObj.GetComponent<SkeletonGraphic>();
-        // _finishSkeleton.AnimationState.Complete += VoleVerify;
+        // _finishSkeleton.AnimationState.Complete += BoreMottle;
 
         MessageCenterLogic.GetInstance().Register(CConfig.mg_ShowWheelBar, (md) => { DoSliderUIAct(); });
     }
@@ -138,13 +138,13 @@ public class WheelBar : MonoBehaviour
             copyObj.gameObject.SetActive(false);
             _isFinishFlag = false;
             MessageCenterLogic.GetInstance().Send(CConfig.mg_PassAnim);
-            UIManager.GetInstance().ShowUIForms(nameof(TraceMagic));
+            UIManager.GetInstance().ShowUIForms(nameof(TrendScope));
             Destroy(copyObj);
         });
     }
 
 
-    // private void VoleVerify(TrackEntry trackEntry)
+    // private void BoreMottle(TrackEntry trackEntry)
     // {
     //     ShowLuckPanel();
     // }

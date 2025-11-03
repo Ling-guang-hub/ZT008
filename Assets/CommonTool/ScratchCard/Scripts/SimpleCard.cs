@@ -73,13 +73,13 @@ public class SimpleCard : BaseCard
                     LocalRewardData.CompleteData.HasCoin = true;
                     LocalRewardData.CompleteData.CoinAmount += (int)reward.Amount;
                     LocalRewardData.ShowRewardPanel = true;
-                    LocalRewardData.CompleteData.CoinPos.Add(new KeyValuePair<int, Vector3>(reward.Amount ,rewardPos));
+                    LocalRewardData.CompleteData.CoinPos.Add(new KeyValuePair<decimal, Vector3>(reward.Amount ,rewardPos));
                     break;
                 case CommonRewardType.Cash:
                     LocalRewardData.CompleteData.HasCash = true;
                     LocalRewardData.CompleteData.CashAmount += (decimal)reward.Amount;
                     LocalRewardData.ShowRewardPanel = true;
-                    LocalRewardData.CompleteData.CashPos.Add(new KeyValuePair<int, Vector3>(reward.Amount ,rewardPos));
+                    LocalRewardData.CompleteData.CashPos.Add(new KeyValuePair<decimal, Vector3>(reward.Amount ,rewardPos));
                     break;
                 case CommonRewardType.Goods:
                     // LocalRewardData.CompleteData.CollectsPos.Add(rewardPos);

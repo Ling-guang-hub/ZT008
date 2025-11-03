@@ -79,19 +79,21 @@ public class JackpotCard : BaseCard
                     LocalRewardData.CompleteData.CoinAmount += (int)rewardData.Amount;
                     LocalRewardData.ShowRewardPanel = true;
                     LocalRewardData.CompleteData.CoinPos.Add(
-                        new KeyValuePair<int, Vector3>(rewardData.Amount, rewardPos));
+                        new KeyValuePair<decimal, Vector3>(rewardData.Amount, rewardPos));
                     break;
                 case CommonRewardType.Cash:
                     LocalRewardData.CompleteData.HasCash = true;
                     LocalRewardData.CompleteData.CashAmount += (decimal)rewardData.Amount;
                     LocalRewardData.ShowRewardPanel = true;
                     LocalRewardData.CompleteData.CashPos.Add(
-                        new KeyValuePair<int, Vector3>(rewardData.Amount, rewardPos));
+                        new KeyValuePair<decimal, Vector3>(rewardData.Amount, rewardPos));
                     break;
                 case CommonRewardType.Goods:
                     // LocalRewardData.CompleteData.CollectsPos.Add(rewardPos);
                     LocalRewardData.CompleteData.CollectsPos.Add(
                         new KeyValuePair<int, Vector3>(rewardData.GoodsIdx, rewardPos));
+                    CollectManager.Instance.needFly = true;
+                    CollectManager.Instance.curType = rewardData.CollectType;
                     break;
             }
         }
@@ -118,15 +120,15 @@ public class JackpotCard : BaseCard
         _baseDataList = new List<BaseCardData>();
         _rewardNameList = new List<string>();
 
-        int randIdx = Random.Range(0, MaxRewardCount);
+        List<BaseRewardItemData> rewardList    = GetRewardList(MaxRewardCount);
 
         for (int i = 0; i < MaxRewardCount; i++)
         {
-            BaseRewardItemData reward = GetReward();
-            if (i == randIdx && IsSpecialCard)
-            {
-                reward = GetEffectiveReward();
-            }
+            BaseRewardItemData reward = rewardList[i];
+            // if (i == randIdx && IsSpecialCard)
+            // {
+            //     reward = GetEffectiveReward();
+            // }
 
             if (reward.IsThanks) continue;
             string spriteName = GetActiveItemName();
@@ -134,7 +136,7 @@ public class JackpotCard : BaseCard
 
             if (reward.Type != CommonRewardType.Goods)
             {
-                reward.Amount /= 3;
+                reward.Amount = decimal.Round(reward.Amount / 3, 2);
             }
 
             for (int j = 0; j < RewardLimit; j++)
@@ -184,9 +186,44 @@ public class JackpotCard : BaseCard
         }
     }
 
+    private List<BaseRewardItemData> GetRewardList(int lenght)
+    {
+        int randIdx = Random.Range(0, lenght);
+        bool hasGoods = false;
+        List<BaseRewardItemData> rewardList = new List<BaseRewardItemData>();
+        for (int i = 0; i < lenght; i++)
+        {
+            BaseRewardItemData rewardData = GetReward();
+            if (i == randIdx && IsSpecialCard)
+            {
+                rewardData = GetEffectiveReward();
+            }
+            if (!rewardData.IsThanks && rewardData.Type == CommonRewardType.Goods)
+            {
+                if (hasGoods)
+                {
+                    while (rewardData.Type == CommonRewardType.Goods)
+                    {
+                        rewardData = GetEffectiveReward(); 
+                    }
+                }
+                else
+                {
+                    hasGoods = true;
+                }
+            }
+            rewardList.Add(rewardData);
+        }
+
+        return rewardList;
+    }
+    
     private void SetItemGroupImg()
     {
+
+
         List<BaseCardData> newDataList = CardUtil.Shuffle(_baseDataList);
+        
         for (int i = 0; i < newDataList.Count; i++)
         {
             BaseCardData baseData = newDataList[i];

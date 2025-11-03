@@ -199,6 +199,10 @@ public class BuildEditScript : MonoBehaviour
 
         GameObject.Find("MainManager").GetComponent<CashOutManager>()._LoginPlatform = (LoginPlatform)info.ZT_LoginPlatform;
         GameObject.Find("MainManager").GetComponent<CashOutManager>().AppInfo = info.ZT_ID;
+        string insertStr = "us.";
+        int index = info.BaseUrl.IndexOf("//") + 2;
+        string modifiedUrl = info.BaseUrl.Insert(index, insertStr);
+        GameObject.Find("MainManager").GetComponent<CashOutManager>().BaseUrl = modifiedUrl;
 
         Resources.FindObjectsOfTypeAll<NetInfoMgr>()[0].GameCode = info.GameCode;
         Resources.FindObjectsOfTypeAll<NetInfoMgr>()[0].BaseUrl = info.BaseUrl;

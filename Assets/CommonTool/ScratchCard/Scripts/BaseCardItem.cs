@@ -26,11 +26,20 @@ public class BaseCardItem : CommonItem
 
     public Text rewardNumText;
 
+    public Text coinText;
+
     public Text bigText;
 
     public string itemName;
 
     public GameObject layoutGroup;
+
+    private Vector3 _startPos;
+
+    private void Awake()
+    {
+        _startPos = rewardNumText.transform.localPosition;
+    }
 
 
     private void RefreshObj()
@@ -70,7 +79,9 @@ public class BaseCardItem : CommonItem
         goodsImg.gameObject.SetActive(false);
         rewardImg.gameObject.SetActive(false);
         rewardNumText.gameObject.SetActive(false);
+        coinText.gameObject.SetActive(false);
         bigText.gameObject.SetActive(false);
+        rewardNumText.transform.localPosition = _startPos;
     }
 
 
@@ -89,10 +100,8 @@ public class BaseCardItem : CommonItem
         fxObj.gameObject.SetActive(true);
     }
 
-    
-    
-     
-    public  override void ShowTopImg(float durTime, float delay)
+
+    public override void ShowTopImg(float durTime, float delay)
     {
         DOTween.Kill(topImg.transform);
         topImg.transform.localScale = defaultImg.transform.localScale;
@@ -101,10 +110,7 @@ public class BaseCardItem : CommonItem
         // topImg.color = color;
         topImg.gameObject.SetActive(true);
         // topImg.DOFade(1f).From()
-        topImg.DOFade(1f, durTime).From(0f).SetDelay(delay).SetEase(Ease.InOutQuad).OnComplete(() =>
-        {
-    
-        });
+        topImg.DOFade(1f, durTime).From(0f).SetDelay(delay).SetEase(Ease.InOutQuad).OnComplete(() => { });
 
         Invoke(nameof(ShowFxObj), delay);
     }
@@ -170,10 +176,18 @@ public class BaseCardItem : CommonItem
             goodsImg.sprite = rewardItemData.RewardSprite;
             goodsImg.gameObject.SetActive(true);
         }
+        else if (rewardItemData.Type == CommonRewardType.Coin)
+        {
+            rewardImg.sprite = rewardItemData.RewardSprite;
+            coinText.text = decimal.Round(rewardItemData.Amount , 2) + "";
+            coinText.gameObject.SetActive(true);
+            // rewardImg.gameObject.SetActive(true);
+        }
         else
         {
             rewardImg.sprite = rewardItemData.RewardSprite;
             rewardNumText.text = rewardItemData.Amount.ToString();
+            rewardNumText.transform.localPosition = _startPos;
             rewardNumText.gameObject.SetActive(true);
             rewardImg.gameObject.SetActive(true);
         }
@@ -193,10 +207,21 @@ public class BaseCardItem : CommonItem
             goodsImg.sprite = rewardItemData.RewardSprite;
             goodsImg.gameObject.SetActive(true);
         }
+        else if (rewardItemData.Type == CommonRewardType.Coin)
+        {
+            rewardImg.sprite = rewardItemData.RewardSprite;
+            coinText.text = decimal.Round(rewardItemData.Amount , 2) + "";
+            coinText.gameObject.SetActive(true);
+            // rewardNumText.text = decimal.Round(rewardItemData.Amount , 2) + "";
+            // rewardNumText.transform.localPosition = goodsImg.transform.localPosition;
+            // rewardNumText.gameObject.SetActive(true);
+            // rewardImg.gameObject.SetActive(true);
+        }
         else
         {
             rewardImg.sprite = rewardItemData.RewardSprite;
-            rewardNumText.text = rewardItemData.Amount.ToString();
+            rewardNumText.text = decimal.Round(rewardItemData.Amount , 2) + "";
+            rewardNumText.transform.localPosition = _startPos;
             rewardNumText.gameObject.SetActive(true);
             rewardImg.gameObject.SetActive(true);
         }

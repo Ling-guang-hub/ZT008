@@ -90,10 +90,26 @@ public class MultiGroup
 public class GameData
 {
 
+    public List<int> fly_box { get; set; }
+    
+    public int fly_pop { get; set; }
+    
     public int first_coin { get; set; }
     
+    public int ad_coin { get; set; }
+    
     public List<int> random_coin { get; set; }
-
+    
+    public List<int> random_cash { get; set; }
+    
+    public List<int> cash_step { get; set; }
+    
+    public List<int> coin_step { get; set; }
+    
+    public int flame_cash { get; set; }
+    
+    public int lightning_cash { get; set; }
+    
     public int bigwin_limit { get; set; }
 
     public List<int> wheel_step { get; set; }
@@ -139,6 +155,8 @@ public class NetWeightData
     public int count { set; get; }
 
     public int goal { set; get; }
+
+    public string goods_type { set; get; }
 }
 
 public class NetCardParam
@@ -159,6 +177,8 @@ public class NetCardParam
     public string name { get; set; }
     
     public string desc { get; set; }
+    
+    public int cost { get; set; }
     
 }
 

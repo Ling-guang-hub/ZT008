@@ -6,12 +6,8 @@
 //
 
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -30,6 +26,8 @@ public class TicTacToeBoard : MonoBehaviour
     public Image goodsImg;
     public Image rewardImg;
     public Text rewardText;
+
+    public Text coinText;
 
     public Sprite isOOnSprite;
     public Sprite isOOffSprite;
@@ -284,11 +282,13 @@ public class TicTacToeBoard : MonoBehaviour
         {
             rewardImg.sprite = rewardItemData.RewardSprite;
             rewardText.text = rewardItemData.Amount.ToString();
+            coinText.text = rewardItemData.Amount.ToString();
         }
 
         goodsImg.gameObject.SetActive(rewardItemData.Type == CommonRewardType.Goods);
-        rewardImg.gameObject.SetActive(rewardItemData.Type != CommonRewardType.Goods);
-        rewardText.gameObject.SetActive(rewardItemData.Type != CommonRewardType.Goods);
+        rewardImg.gameObject.SetActive(rewardItemData.Type == CommonRewardType.Cash);
+        rewardText.gameObject.SetActive(rewardItemData.Type == CommonRewardType.Cash);
+        coinText.gameObject.SetActive(rewardItemData.Type == CommonRewardType.Coin);
         RefreshObj();
     }
 

@@ -24,28 +24,57 @@ public class CollectBarCtrl : MonoBehaviour
 
     public GameObject flyObj;
 
-    private readonly string CollectsSeqStr = "CollectsSeq";
+    [FormerlySerializedAs("rewardText")]
+
+
+    public Text RevereIraq;
 
     [FormerlySerializedAs("fxObj")]
 
 
     public GameObject fxObj;
 
+    [FormerlySerializedAs("collectType")]
+
+
+    public CollectType collectType;
+
     private int _curCollectCount;
 
-    
+    private string CollectsSeqStr;
+
     private Vector3 _lastPos;
-    
+
+    private string _thisCurCollectKey;
+
+    private int _curReward;
+
+
+    private void Awake()
+    {
+        CollectsSeqStr = "CollectsSeq" + collectType;
+        _lastPos = new Vector3(0, 10, 0);
+    }
+
     private void Start()
     {
+        _thisCurCollectKey = CollectManager.Instance.GetCurrentCollectKey(collectType);
+        _curReward = CollectManager.Instance.GetCollectReward(collectType);
+        
+        if (!PlayerPrefs.HasKey(_thisCurCollectKey))
+        {
+            PlayerPrefs.SetInt(_thisCurCollectKey, 0);
+        }
+
+        CollectManager.Instance.LimitDict[_thisCurCollectKey] = collectItems.Count;
+        RevereIraq.text = _curReward.ToString();
         ShowCollects();
-        _lastPos = new Vector3(0, 10, 0);
     }
 
 
     public void ShowCollects()
     {
-        _curCollectCount = CollectManager.Instance.GetCurCollectCount();
+        _curCollectCount = CollectManager.Instance.GetCurCollectCount(_thisCurCollectKey);
         for (int i = 0; i < collectItems.Count; i++)
         {
             collectItems[i].gameObject.SetActive(i < _curCollectCount);
@@ -77,7 +106,7 @@ public class CollectBarCtrl : MonoBehaviour
         {
             foreach (var t in thisPos)
             {
-                int idx =100+ t.Key;
+                int idx = 100 + t.Key;
                 Vector3 pos = t.Value;
 
                 if (!keyList.Contains(idx))
@@ -87,8 +116,7 @@ public class CollectBarCtrl : MonoBehaviour
                 }
 
                 collectPos[idx].Add(pos);
-            } 
-            
+            }
         }
 
         keyList.Sort();
@@ -113,7 +141,7 @@ public class CollectBarCtrl : MonoBehaviour
 
     private Sequence GetFlyAnimSeq(List<int> keys, Dictionary<int, List<Vector3>> collectPosDic)
     {
-        _curCollectCount = CollectManager.Instance.GetCurCollectCount();
+        _curCollectCount = CollectManager.Instance.GetCurCollectCount(_thisCurCollectKey);
         DOTween.Kill(CollectsSeqStr);
         Sequence s = DOTween.Sequence();
 
@@ -124,9 +152,9 @@ public class CollectBarCtrl : MonoBehaviour
         {
             int thisKey = keys[i];
             int targetObjIdx = _curCollectCount + i;
-            if (targetObjIdx >=collectItems.Count)
+            if (targetObjIdx >= collectItems.Count)
             {
-                moreCount = keys.Count+ _curCollectCount-collectItems.Count;
+                moreCount = keys.Count + _curCollectCount - collectItems.Count;
                 break;
             }
 
@@ -200,26 +228,32 @@ public class CollectBarCtrl : MonoBehaviour
 
     private void AfterFly(int count, int moreCount)
     {
-        CollectManager.Instance.AddCollectCount(count);
+        CollectManager.Instance.needFly = false;
+        CollectManager.Instance.AddCollectCount(count, _thisCurCollectKey);
         ShowCollects();
         LocalRewardData.CompleteData.CollectsPos.Clear();
-        SkinMagic.Instance.CheckShowCollectBonus(moreCount);
+        FishScope.Instance.CheckShowCollectBonus(CheckIsFinish(), collectType, _curReward  ,moreCount);
     }
 
+    public bool CheckIsFinish()
+    {
+        return CollectManager.Instance.GetCurCollectCount(_thisCurCollectKey) >=
+               CollectManager.Instance.LimitDict[_thisCurCollectKey];
+    }
 
     public void DoScaleAct()
     {
         Vector3 startScale = collectItems[0].transform.localScale;
-        
+
         foreach (var item in collectItems)
         {
             item.transform.DOScale(startScale * 1.2f, 0.3f)
-                .SetEase(Ease.InOutQuad).OnComplete(() =>
-                {
-                    item.transform.DOScale(startScale, 0.3f);
-                });
+                .SetEase(Ease.InOutQuad).OnComplete(() => { item.transform.DOScale(startScale, 0.3f); });
         }
-        
     }
 
+    public void SetCollectCount(int num)
+    {
+        CollectManager.Instance.SetCollectCount(num, _thisCurCollectKey);
+    }
 }

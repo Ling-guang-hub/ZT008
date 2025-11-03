@@ -63,7 +63,7 @@ public class BigWinWheelItem : MonoBehaviour
         _multiList = new List<float>() { 1.5f, 2, 3, 4, 5 };
         _thisActSeq = DOTween.Sequence();
         _curObjIdx = 0;
-        PostDeed();
+        LintIraq();
 
     }
 
@@ -83,7 +83,7 @@ public class BigWinWheelItem : MonoBehaviour
     
     
 
-    public void PostDeed()
+    public void LintIraq()
     {
         wheelObj.gameObject.transform.rotation = Quaternion.Euler(0, 0, 22.5f);
         adImg.gameObject.SetActive(SaveDataManager.GetBool(CConfig.sv_FinishFirstBigWin));
@@ -92,7 +92,7 @@ public class BigWinWheelItem : MonoBehaviour
             : new List<int>() { 2, 1, 0, 1, 3, 1, 0, 1 };
         
         thisMulti = _multiList[0];
-        getText.text = "Get X " + thisMulti;
+        getText.text = "REWARD X " + thisMulti;
         
         for (int i = 0; i < wheelItems.Count; i++)
         {
@@ -101,11 +101,11 @@ public class BigWinWheelItem : MonoBehaviour
             wheelItems[i].GetComponent<BigWinMultiItem>().lightBg.gameObject.SetActive(false);
         }
 
-        ItLog();
+        MyAla();
     }
     
 
-    private void ItLog()
+    private void MyAla()
     {
         _thisActSeq = GetRotateAnimSeq();
         _thisActSeq.Play();
@@ -148,6 +148,6 @@ public class BigWinWheelItem : MonoBehaviour
         int thisIdx = _numIdxList[idx];
 
         thisMulti = _multiList[thisIdx];
-        getText.text = "Get X " + thisMulti;
+        getText.text = "REWARD X " + thisMulti;
     }
 }

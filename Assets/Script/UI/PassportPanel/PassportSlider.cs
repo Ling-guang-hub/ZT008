@@ -6,7 +6,9 @@
 //
 
 
+using System;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -15,24 +17,32 @@ public class PassportSlider : MonoBehaviour
 {
     // public Button passBtn;
 
-    [FormerlySerializedAs("sliderImg")]
+
+    [FormerlySerializedAs("iconImg")]
 
 
-    public Image sliderImg;
 
-    [FormerlySerializedAs("redPointImg")]
+    public Image iconImg;
+    
+    // public Image sliderImg;
 
+    // public GameObject redPointImg;
+    
+    private Vector3 _iconScale;
 
-    public GameObject redPointImg;
-
+    private void Awake()
+    {
+        _iconScale = Vector3.one;
+    }
 
     void Start()
     {
         // passBtn.onClick.AddListener(() =>
         // {
         //     if (LocalCommonData.IsGamePass) return;
-        //     UIManager.GetInstance().ShowUIForms("EdgeBothMagic");
+        //     UIManager.GetInstance().ShowUIForms("SagoLiraScope");
         // });
+
     }
 
 
@@ -54,14 +64,37 @@ public class PassportSlider : MonoBehaviour
     }
 
 
+
+    private void MyAla()
+    {
+        // DOTween.Kill(iconImg.transform);
+        iconImg.transform.DOKill();
+        iconImg.transform.localScale = _iconScale;
+        iconImg.transform.DOScale(1.3f, 0.6f)
+            .SetLoops(-1, LoopType.Yoyo)
+            .SetEase(Ease.InOutQuad);
+    }
+
+
+
     public void ShowSlider()
     {
         int currentCard =  CardManager.Instance.GetFinishCardNum();
         PassportLevelData currentData = GetCurrentLevelData();
 
-        redPointImg.gameObject.SetActive(currentCard >= currentData.LeastCard);
-        sliderImg.fillAmount = currentCard >= currentData.LeastCard
-            ? 1
-            : 1 - ((float)currentData.LeastCard - currentCard) / currentData.NeedCard;
+        // redPointImg.gameObject.SetActive(currentCard >= currentData.LeastCard);
+        if (currentCard >= currentData.LeastCard)
+        {
+            MyAla();
+        }
+        else
+        {
+            // DOTween.Kill(iconImg.transform);
+            iconImg.transform.DOKill();
+            iconImg.transform.localScale = _iconScale;
+        }
+        // sliderImg.fillAmount = currentCard >= currentData.LeastCard
+        //     ? 1
+        //     : 1 - ((float)currentData.LeastCard - currentCard) / currentData.NeedCard;
     }
 }

@@ -64,18 +64,22 @@ public class TicTacToeCard : BaseCard
                 LocalRewardData.CompleteData.HasCoin = true;
                 LocalRewardData.CompleteData.CoinAmount += (int)(rewardData.Amount * rewardData.RewardMulti);
                 LocalRewardData.ShowRewardPanel = true;
-                LocalRewardData.CompleteData.CoinPos.Add(new KeyValuePair<int, Vector3>(rewardData.Amount, rewardPos));
+                LocalRewardData.CompleteData.CoinPos.Add(
+                    new KeyValuePair<decimal, Vector3>(rewardData.Amount, rewardPos));
                 break;
             case CommonRewardType.Cash:
                 LocalRewardData.CompleteData.HasCash = true;
                 LocalRewardData.CompleteData.CashAmount += (decimal)(rewardData.Amount * rewardData.RewardMulti);
                 LocalRewardData.ShowRewardPanel = true;
-                LocalRewardData.CompleteData.CashPos.Add(new KeyValuePair<int, Vector3>(rewardData.Amount, rewardPos));
+                LocalRewardData.CompleteData.CashPos.Add(
+                    new KeyValuePair<decimal, Vector3>(rewardData.Amount, rewardPos));
                 break;
             case CommonRewardType.Goods:
                 // LocalRewardData.CompleteData.CollectsPos.Add(rewardPos);
                 LocalRewardData.CompleteData.CollectsPos.Add(
                     new KeyValuePair<int, Vector3>(rewardData.GoodsIdx, rewardPos));
+                CollectManager.Instance.needFly = true;
+                CollectManager.Instance.curType = rewardData.CollectType;
                 break;
         }
     }
@@ -85,15 +89,16 @@ public class TicTacToeCard : BaseCard
     {
         _rewardBoardList = new List<GameObject>();
 
-        int randIdx = Random.Range(0, boardList.Count);
+        List<BaseRewardItemData> rewardDataList = GetRewardList(boardList.Count);
+
 
         for (int i = 0; i < boardList.Count; i++)
         {
-            BaseRewardItemData reward = GetReward();
-            if (i == randIdx && IsSpecialCard)
-            {
-                reward = GetEffectiveReward();
-            }
+            BaseRewardItemData reward = rewardDataList[i];
+            // if (i == randIdx && IsSpecialCard)
+            // {
+            //     reward = GetEffectiveReward();
+            // }
 
             // DealSpecial(reward);
             SetRewardItem(reward, boardList[i]);
@@ -102,6 +107,39 @@ public class TicTacToeCard : BaseCard
         }
     }
 
+    private List<BaseRewardItemData> GetRewardList(int lenght)
+    {
+        int randIdx = Random.Range(0, lenght);
+        bool hasGoods = false;
+        List<BaseRewardItemData> rewardList = new List<BaseRewardItemData>();
+        for (int i = 0; i < lenght; i++)
+        {
+            BaseRewardItemData rewardData = GetReward();
+            if (i == randIdx && IsSpecialCard)
+            {
+                rewardData = GetEffectiveReward();
+            }
+
+            if (!rewardData.IsThanks && rewardData.Type == CommonRewardType.Goods)
+            {
+                if (hasGoods)
+                {
+                    while (rewardData.Type == CommonRewardType.Goods)
+                    {
+                        rewardData = GetEffectiveReward();
+                    }
+                }
+                else
+                {
+                    hasGoods = true;
+                }
+            }
+
+            rewardList.Add(rewardData);
+        }
+
+        return rewardList;
+    }
 
     public override void DoLoopAnim()
     {

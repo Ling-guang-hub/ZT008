@@ -41,11 +41,6 @@ public class RowSameCard : BaseCard
     }
 
 
-    // TODO
-    private void InitReward()
-    {
-    }
-
     private void CreateItem()
     {
         _itemGroupList = new List<List<GameObject>>();
@@ -143,18 +138,21 @@ public class RowSameCard : BaseCard
                 LocalRewardData.CompleteData.HasCoin = true;
                 LocalRewardData.CompleteData.CoinAmount += (int)rewardData.Amount;
                 LocalRewardData.ShowRewardPanel = true;
-                LocalRewardData.CompleteData.CoinPos.Add(new KeyValuePair<int, Vector3>(rewardData.Amount, rewardPos));
+                LocalRewardData.CompleteData.CoinPos.Add(new KeyValuePair<decimal, Vector3>(rewardData.Amount, rewardPos));
                 break;
             case CommonRewardType.Cash:
                 LocalRewardData.CompleteData.HasCash = true;
                 LocalRewardData.CompleteData.CashAmount += (decimal)rewardData.Amount;
                 LocalRewardData.ShowRewardPanel = true;
-                LocalRewardData.CompleteData.CashPos.Add(new KeyValuePair<int, Vector3>(rewardData.Amount, rewardPos));
+                LocalRewardData.CompleteData.CashPos.Add(new KeyValuePair<decimal, Vector3>(rewardData.Amount, rewardPos));
                 break;
             case CommonRewardType.Goods:
-                LocalRewardData.CompleteData.CollectsPos.Add(  new KeyValuePair<int, Vector3>(rewardData.GoodsIdx, rewardPos));
+                LocalRewardData.CompleteData.CollectsPos.Add(
+                    new KeyValuePair<int, Vector3>(rewardData.GoodsIdx, rewardPos));
                 // LocalRewardData.CompleteData.GoodsPos.Add(
                 //     new KeyValuePair<int, Vector3>(rewardData.GoodsIdx, rewardPos));
+                CollectManager.Instance.needFly = true;
+                CollectManager.Instance.curType = rewardData.CollectType;
                 break;
         }
     }
@@ -183,28 +181,61 @@ public class RowSameCard : BaseCard
     }
 
 
+    private List<BaseRewardItemData> GetRewardList(int lenght)
+    {
+        int randIdx = Random.Range(0, lenght);
+        bool hasGoods = false;
+        List<BaseRewardItemData> rewardList = new List<BaseRewardItemData>();
+        for (int i = 0; i < lenght; i++)
+        {
+            BaseRewardItemData rewardData = GetReward();
+            if (i == randIdx && IsSpecialCard)
+            {
+                rewardData = GetEffectiveReward();
+            }
+            if (!rewardData.IsThanks && rewardData.Type == CommonRewardType.Goods)
+            {
+                if (hasGoods)
+                {
+                    while (rewardData.Type == CommonRewardType.Goods)
+                    {
+                        rewardData = GetEffectiveReward(); 
+                    }
+                }
+                else
+                {
+                    hasGoods = true;
+                }
+            }
+            rewardList.Add(rewardData);
+        }
+
+        return rewardList;
+    }
+
     private void SetItemGroupImg()
     {
-        List<BaseRewardItemData> rewardDataList = new List<BaseRewardItemData>();
+        List<BaseRewardItemData> rewardDataList = GetRewardList(_itemGroupList.Count);
 
-
-        int randIdx = Random.Range(0, _itemGroupList.Count);
 
         for (int i = 0; i < _itemGroupList.Count; i++)
         {
-            BaseRewardItemData reward = GetReward();
-            if (i == randIdx && IsSpecialCard)
-            {
-                reward = GetEffectiveReward();
-            }
+            BaseRewardItemData reward = rewardDataList[i];
+            // if (i == randIdx && IsSpecialCard)
+            // {
+            //     reward = GetEffectiveReward();
+            // }
 
             rewardDataList.Add(reward);
         }
-
         
+
+        CardUtil.Shuffle(rewardDataList);
+
         // for new user
         if (!SaveDataManager.GetBool(CConfig.sv_FinishFirstBigWin))
         {
+            Debug.Log("here is new");
             for (int i = 0; i < rewardDataList.Count; i++)
             {
                 if (i == 0)
@@ -223,7 +254,7 @@ public class RowSameCard : BaseCard
         if (SaveDataManager.GetBool(CConfig.sv_FinishFirstBigWin) &&
             !SaveDataManager.GetBool(CConfig.sv_InitSecondCard))
         {
-            SaveDataManager.SetBool(CConfig.sv_InitSecondCard, true); 
+            SaveDataManager.SetBool(CConfig.sv_InitSecondCard, true);
             for (int i = 0; i < rewardDataList.Count; i++)
             {
                 rewardDataList[i] = GetEffectiveReward();
@@ -232,7 +263,6 @@ public class RowSameCard : BaseCard
                     rewardDataList[i] = GetEffectiveReward();
                 }
             }
-
             CardUtil.Shuffle(rewardDataList);
         }
 
@@ -252,6 +282,7 @@ public class RowSameCard : BaseCard
             LocalRewardData.CompleteData.IsSpecial = false;
             return;
         }
+
         if (SaveDataManager.GetBool(CConfig.sv_InitFirstCard) &&
             !SaveDataManager.GetBool(CConfig.sv_InitSecondCard))
         {

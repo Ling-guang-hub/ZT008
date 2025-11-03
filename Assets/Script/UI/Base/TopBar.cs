@@ -20,10 +20,10 @@ public class TopBar : MonoBehaviour
     [FormerlySerializedAs("coinImg")]
 
 
-    public GameObject GenuBog;
+    public GameObject FoulGap;
     [FormerlySerializedAs("cashImg")]
 
-    public GameObject PulpBog;
+    public GameObject LikeGap;
 
     [FormerlySerializedAs("cashObj")]
 
@@ -43,7 +43,7 @@ public class TopBar : MonoBehaviour
     [FormerlySerializedAs("coinText")]
 
 
-    public Text GenuBent;
+    public Text FoulIraq;
 
     [FormerlySerializedAs("cashText")]
 
@@ -70,10 +70,9 @@ public class TopBar : MonoBehaviour
         // });
 
 
-        MessageCenterLogic.GetInstance().Register(CConfig.mg_GameSuspend, (md) =>
-        {
-            ShowWallet();
-        });
+        MessageCenterLogic.GetInstance().Register(CConfig.mg_GameSuspend, (md) => { ShowWallet(); });
+        
+        MessageCenterLogic.GetInstance().Register(CConfig.mg_SubCoin, (md) => { ShowCoin(md.valueInt); });
 
     }
 
@@ -83,15 +82,22 @@ public class TopBar : MonoBehaviour
         ShowWallet();
     }
 
+
+    public void ShowCoin(int oldCoin)
+    {
+        int curCoin =  GameDataManager.GetInstance().GetCoin();
+        AnimationController.ChangeNumber(oldCoin, curCoin, 0.01f, FoulIraq, null);
+        FoulIraq.text = curCoin + "";
+    }
+
     public void ShowWallet()
     {
+        FoulIraq.text = GameDataManager.GetInstance().GetCoin() + "";
         MessageCenterLogic.GetInstance().Send(CConfig.mg_ShowCashOutText);
-        // GenuBent.text = GameDataManager.GetInstance().GetCoin().ToString(CultureInfo.CurrentCulture);
-        // cashText.text = GameDataManager.GetInstance().GetCash().ToString(CultureInfo.CurrentCulture);
     }
 
 
-    private async UniTask CoinAnima(int coinAmount, List<KeyValuePair<int, Vector3>> startPos)
+    private async UniTask CoinAnima(int coinAmount, List<KeyValuePair<decimal, Vector3>> startPos)
     {
         if (coinAmount > 0)
         {
@@ -103,7 +109,7 @@ public class TopBar : MonoBehaviour
 
                 MusicMgr.GetInstance().PlayEffect(MusicType.UIMusic.Coin_fly);
                 UniTask task =
-                    AnimationController.GoldMoveBest(GenuBog, coinNum, thisPos.Value, GenuBog.transform.position);
+                    AnimationController.GoldMoveBest(FoulGap, coinNum, thisPos.Value, FoulGap.transform.position);
                 animationTasks.Add(task);
             }
 
@@ -111,12 +117,13 @@ public class TopBar : MonoBehaviour
             await UniTask.WhenAll(animationTasks);
             int oldCoin = GameDataManager.GetInstance().GetCoin();
             // MusicMgr.GetInstance().PlayEffect(MusicType.UIMusic.Num_roll, 0.5f);
-            AnimationController.ChangeNumber(oldCoin, oldCoin + coinAmount, 0.01f, GenuBent, null);
+            AnimationController.ChangeNumber(oldCoin, oldCoin + coinAmount, 0.01f, FoulIraq, null);
         }
     }
 
-    private async UniTask CashAnima(decimal cashAmount, List<KeyValuePair<int, Vector3>> startPos)
+    private async UniTask CashAnima(decimal cashAmount, List<KeyValuePair<decimal, Vector3>> startPos)
     {
+
         if (cashAmount > 0)
         {
             List<UniTask> animationTasks = new List<UniTask>();
@@ -126,7 +133,7 @@ public class TopBar : MonoBehaviour
                 int cashNum = (int)Math.Ceiling((double)thisPos.Key / NetInfoMgr.instance.GameData.fly_cash_step);
                 MusicMgr.GetInstance().PlayEffect(MusicType.UIMusic.Cash_fly);
                 UniTask task =
-                    AnimationController.GoldMoveBest(PulpBog, cashNum, thisPos.Value, PulpBog.transform.position);
+                    AnimationController.GoldMoveBest(LikeGap, cashNum, thisPos.Value, LikeGap.transform.position);
                 animationTasks.Add(task);
             }
 
@@ -138,22 +145,22 @@ public class TopBar : MonoBehaviour
     public async UniTask AddCoinAndDoAnima(int coinAmount, Vector3 coinPis, decimal cashAmount, Vector3 cashPos)
     {
         await UniTask.WhenAll(
-            CoinAnima(coinAmount, new List<KeyValuePair<int, Vector3>>() { new(coinAmount, coinPis) }),
+            CoinAnima(coinAmount, new List<KeyValuePair<decimal, Vector3>>() { new(coinAmount, coinPis) }),
             CashAnima(cashAmount,
-                new List<KeyValuePair<int, Vector3>>() { new((int)cashAmount, cashPos) }));
+                new List<KeyValuePair<decimal, Vector3>>() { new((int)cashAmount, cashPos) }));
         GameDataManager.GetInstance().AddCoin(coinAmount);
-
+        GameDataManager.GetInstance().AddMoney( cashAmount);
     }
 
 
     public async UniTask AddCoinAndDoAnima(int coinAmount, decimal cashAmount, bool isWheel)
     {
-        List<KeyValuePair<int, Vector3>> coinPoss = new List<KeyValuePair<int, Vector3>>();
-        List<KeyValuePair<int, Vector3>> cashPoss = new List<KeyValuePair<int, Vector3>>();
+        List<KeyValuePair<decimal, Vector3>> coinPoss = new List<KeyValuePair<decimal, Vector3>>();
+        List<KeyValuePair<decimal, Vector3>> cashPoss = new List<KeyValuePair<decimal, Vector3>>();
         if (isWheel)
         {
-            coinPoss.Add(new KeyValuePair<int, Vector3>(coinAmount, Vector2.zero));
-            cashPoss.Add(new KeyValuePair<int, Vector3>((int)cashAmount, Vector2.zero));
+            coinPoss.Add(new KeyValuePair<decimal, Vector3>(coinAmount, Vector2.zero));
+            cashPoss.Add(new KeyValuePair<decimal, Vector3>((int)cashAmount, Vector2.zero));
         }
         else
         {
@@ -163,11 +170,9 @@ public class TopBar : MonoBehaviour
 
         await UniTask.WhenAll(CoinAnima(coinAmount, coinPoss), CashAnima(cashAmount, cashPoss));
 
+
         GameDataManager.GetInstance().AddCoin(coinAmount);
+        GameDataManager.GetInstance().AddMoney( cashAmount);
         ShowWallet();
     }
-    
-    
-    
-    
 }

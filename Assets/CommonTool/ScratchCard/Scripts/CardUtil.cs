@@ -59,6 +59,9 @@ public class LocalCardWeight
     public int RewardMulti;
 
     public int GoalCount;
+
+    public CollectType CollectType;
+
 }
 
 public class LocalCardParam
@@ -81,6 +84,8 @@ public class LocalCardParam
 
     public string CardDesc;
 
+    public int CardCost;
+
 }
 
 
@@ -102,8 +107,8 @@ public class CompleteData
     public bool HasCash;
     public bool IsSpecial;
     public decimal CashAmount;
-    public List<KeyValuePair<int, Vector3>> CashPos;
-    public List<KeyValuePair<int, Vector3>> CoinPos;
+    public List<KeyValuePair<decimal, Vector3>> CashPos;
+    public List<KeyValuePair<decimal, Vector3>> CoinPos;
     public List<KeyValuePair<int, Vector3>> GoodsPos;
     public List<KeyValuePair<int, Vector3>> CollectsPos;
     // public List<Vector3> CollectsPos;
@@ -134,8 +139,8 @@ public static class LocalRewardData
             GoodsPos = new List<KeyValuePair<int, Vector3>>(),
             // CollectsPos = new List<Vector3>(),
             CollectsPos = new List<KeyValuePair<int, Vector3>>(),
-            CoinPos = new List<KeyValuePair<int, Vector3>>(),
-            CashPos = new List<KeyValuePair<int, Vector3>>(),
+            CoinPos = new List<KeyValuePair<decimal, Vector3>>(),
+            CashPos = new List<KeyValuePair<decimal, Vector3>>(),
         };
     }
 }
@@ -181,6 +186,8 @@ public static class LocalCommonData
     
     public static readonly float ItemDoFadeDelayTime = 0.2f;
 
+    public static readonly int LevelStep = 5;
+
     public static float ScreenRate = 0.5f;
 
     public static bool IsGamePanel;
@@ -190,6 +197,14 @@ public static class LocalCommonData
     public static int RandomCoinStart;
     
     public static int RandomCoinEnd;
+
+    public static int RandomCashStart;
+    
+    public static int RandomCashEnd;
+
+    public static List<int> CoinStep;
+    
+    public static List<int> CashStep;
 
     // public static CardItemType CardRewardTypeToCareItemType(CardRewardType rewardType)
     // {
@@ -236,6 +251,13 @@ public enum CardItemType
     Goods
 }
 
+public enum CollectType
+{
+    KeyRing,
+    Flame,
+    Lightning
+}
+
 
 public class BaseCardData
 {
@@ -251,7 +273,7 @@ public class BaseRewardItemData
 
     public CommonRewardType Type;
 
-    public int Amount;
+    public decimal Amount;
 
     public Sprite RewardSprite;
 
@@ -262,6 +284,8 @@ public class BaseRewardItemData
     public int RewardMulti;
 
     public int GoalCount;
+    
+    public CollectType CollectType;
 
     // public BaseRewardItemData(bool isThanks)
     // {

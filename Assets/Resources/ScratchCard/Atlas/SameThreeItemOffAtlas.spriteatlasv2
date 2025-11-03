@@ -7,31 +7,9 @@ SpriteAtlasAsset:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
+  serializedVersion: 2
   m_MasterAtlas: {fileID: 0}
   m_ImporterData:
-    serializedVersion: 2
-    textureSettings:
-      serializedVersion: 2
-      anisoLevel: 1
-      compressionQuality: 50
-      maxTextureSize: 2048
-      textureCompression: 0
-      filterMode: 1
-      generateMipMaps: 0
-      readable: 0
-      crunchedCompression: 0
-      sRGB: 1
-    platformSettings: []
-    packingSettings:
-      serializedVersion: 2
-      padding: 4
-      blockOffset: 1
-      allowAlphaSplitting: 0
-      enableRotation: 0
-      enableTightPacking: 0
-      enableAlphaDilation: 0
-    secondaryTextureSettings: {}
-    variantMultiplier: 1
     packables:
     - {fileID: 2800000, guid: 440de6f096fca2840b5c56bbc5cb21d8, type: 3}
     - {fileID: 2800000, guid: 8191aedb17031db44af80c4f7aa2a249, type: 3}
@@ -43,7 +21,4 @@ SpriteAtlasAsset:
     - {fileID: 2800000, guid: d4b51708b27907143b3cfd34a9b3aebb, type: 3}
     - {fileID: 2800000, guid: 45a7cd58fa37617478c1c4acdf6c1f94, type: 3}
     - {fileID: 2800000, guid: be74e4478408ead4a9adc4f369b81496, type: 3}
-    bindAsDefault: 1
-    isAtlasV2: 1
-    cachedData: {fileID: 0}
   m_IsVariant: 0

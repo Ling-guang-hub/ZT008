@@ -55,7 +55,7 @@ public class GoodsBar : MonoBehaviour
     {
         finishSpineObj.SetActive(false);
         _finishSkeleton = finishSpineObj.GetComponent<SkeletonGraphic>();
-        _finishSkeleton.AnimationState.Complete += VoleVerify;
+        _finishSkeleton.AnimationState.Complete += BoreMottle;
     }
 
     public void ShowGoods()
@@ -181,7 +181,7 @@ public class GoodsBar : MonoBehaviour
             copyObj.gameObject.SetActive(false);
 
             MessageCenterLogic.GetInstance().Send(CConfig.mg_PassAnim);
-            UIManager.GetInstance().ShowUIForms(nameof(TraceMagic));
+            UIManager.GetInstance().ShowUIForms(nameof(TrendScope));
             Destroy(copyObj);
         });
     }
@@ -199,11 +199,11 @@ public class GoodsBar : MonoBehaviour
         // }
         // else
         // {
-        //     SkinMagic.Instance.AfterFlyGoods();
+        //     FishScope.Instance.AfterFlyGoods();
         // }
     }
 
-    private void VoleVerify(TrackEntry trackEntry)
+    private void BoreMottle(TrackEntry trackEntry)
     {
         ShowLuckPanel();
     }

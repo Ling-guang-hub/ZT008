@@ -137,7 +137,7 @@ public class TaskManager : MonoSingleton<TaskManager>
         // if (CheckTaskRewardNotClaimed() && !CommonUtil.IsApple() && NetInfoMgr.instance.GameData.bonustask_open == "open")
         // {
 
-        // UIManager.GetInstance().ShowUIForms(StringConst.KeepMagic);
+        // UIManager.GetInstance().ShowUIForms(StringConst.BodyScope);
         // }
     }
 
@@ -178,16 +178,8 @@ public class TaskManager : MonoSingleton<TaskManager>
 
     private void GetReward(TaskRewardType type, double amount, Vector3 iconPos)
     {
-        KeepMagic.Instance.AddCoinAndCash(type ,amount, iconPos);
+        BodyScope.Instance.AddCoinAndCash(type ,amount, iconPos);
 
-        // if (rewardType == TaskRewardType.Cash)
-        // {
-        //     GameDataManager.GetInstance().AddCash(rewardAmount);
-        // }
-        // else
-        // {
-        //     GameDataManager.GetInstance().AddCoin((int)rewardAmount);
-        // }
     }
 
     public TaskItemData GetTaskData(string taskName)
@@ -630,11 +622,22 @@ public class TaskItemData
 
     public TaskItemData(NetTaskItemData netItem)
     {
-        TaskReward = netItem.rewad_num;
+        if (netItem.reward_type == "Cash")
+        {
+            TaskRewardType = TaskRewardType.Cash;
+            TaskReward = netItem.rewad_num * GameUtil.GetCashMulti();
+        }
+        else
+        {
+            TaskRewardType = TaskRewardType.Coin;
+            TaskReward = netItem.rewad_num * GameUtil.GetGoldMulti();
+        }
+
+        // TaskReward = netItem.rewad_num;
         // TaskRewardType = netItem.reward_type == "Cash" && !CommonUtil.IsApple()
         //     ? TaskRewardType.Cash
         //     : TaskRewardType.Coin;
-        TaskRewardType =TaskRewardType.Coin;
+        // TaskRewardType =TaskRewardType.Cash;
         NeedValue = netItem.num;
         Desc = netItem.des;
         CurValue = 0;

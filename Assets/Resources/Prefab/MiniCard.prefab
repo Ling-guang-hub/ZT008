@@ -32,7 +32,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4760458257194431453}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -153,7 +152,6 @@ RectTransform:
   - {fileID: 1110720686212532746}
   - {fileID: 9036276322028678821}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -177,6 +175,7 @@ MonoBehaviour:
   cardSpineObj: {fileID: 9031931571763124066}
   cardButton: {fileID: 7117328644690088706}
   unlockLine: 0
+  _cardSkeleton: {fileID: 19306489092816190}
 --- !u!1 &9031931571763124066
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,7 +207,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4760458257194431453}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -244,10 +242,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   skeletonDataAsset: {fileID: 11400000, guid: aefadfabaa7da604585918fa4facfc70, type: 2}
-  initialSkinName: Diamond
+  initialSkinName: 
   initialFlipX: 0
   initialFlipY: 0
-  startingAnimation: idle_on
+  startingAnimation: 
   startingLoop: 0
   timeScale: 1
   freeze: 0

@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class GameUtil
 {
+    // use for footballcard
     public static List<LocalCardWeight> GetLocalRewardAfterMultiWeightList()
     {
         List<LocalCardWeight> list = LocalCardData.CardParamDict[LocalCommonData.CurrentCardId].RewardWeight;
@@ -24,14 +24,15 @@ public class GameUtil
 
             if (netData.Type == CardRewardType.Coin)
             {
-                double num = netData.RewardNum * GetGoldMulti();
+                double num = netData.RewardNum * GetCoinMultiWithRandom();
                 target.RewardNum = (int)Math.Ceiling(num);
                 target.Type = CardRewardType.Coin;
             }
             else if (netData.Type == CardRewardType.Cash)
             {
-                double num = netData.RewardNum * GetCashMulti();
-                target.RewardNum = Math.Ceiling(num);
+                double num = netData.RewardNum * GetCashMultiWithRandom();
+                // target.RewardNum =(int) Math.Ceiling(num);
+                target.RewardNum = Math.Round(num,2);
                 target.Type = CardRewardType.Cash;
             }
             else
@@ -76,19 +77,21 @@ public class GameUtil
                 target.RewardNum = t.RewardNum;
                 target.RewardMulti = t.RewardMulti;
                 target.GoalCount = t.GoalCount;
+                target.CollectType = t.CollectType;
                 break;
             }
         }
 
         if (target.Type == CardRewardType.Coin)
         {
-            double num = target.RewardNum * GetGoldMulti();
+            double num = target.RewardNum * GetCoinMultiWithRandom();
             target.RewardNum = (int)Math.Ceiling(num);
         }
         else if (target.Type == CardRewardType.Cash)
         {
-            double num = target.RewardNum * GetCashMulti();
-            target.RewardNum = Math.Ceiling(num);
+            double num = target.RewardNum * GetCashMultiWithRandom();
+            target.RewardNum = Math.Round(num,2);
+            // target.RewardNum = (int)Math.Ceiling(num);
         }
 
         return target;
@@ -109,27 +112,25 @@ public class GameUtil
                 case "Coin":
                 {
                     newReward.Type = CommonRewardType.Coin;
-                    double netParam = item.count * GetGoldMulti();
-                    newReward.Count = Math.Ceiling(netParam);
+                    double gold = item.count * GetCoinMultiWithRandom();
+                    newReward.Count = (int)Math.Ceiling(gold);
                     break;
                 }
                 case "Cash":
                 {
-                    // newReward.Type = CommonRewardType.Cash;
-                    // if (CommonUtil.IsApple())
-                    // {
-                    newReward.Type = CommonRewardType.Coin;
-                    // }
-
-                    // double netParam = item.count * GetCashMulti();
-                    double netParam = item.count * GetGoldMulti();
-                    newReward.Count = Math.Ceiling(netParam);
+                    newReward.Type = CommonRewardType.Cash;
+                    double cash = item.count * GetCashMultiWithRandom();
+                    // newReward.Count = (int)Math.Ceiling(cash);
+                    newReward.Count = Math.Round(cash,2);;
                     break;
                 }
                 default:
-                    newReward.Type = CommonRewardType.Card;
-                    newReward.Count = item.count;
-                    newReward.CardId = int.Parse(item.type);
+                    newReward.Type = CommonRewardType.Coin;
+                    double other = item.count * GetCoinMultiWithRandom();
+                    newReward.Count = (int)Math.Ceiling(other);
+                    // newReward.Type = CommonRewardType.Card;
+                    // newReward.Count = item.count;
+                    // newReward.CardId = int.Parse(item.type);
                     break;
             }
 
@@ -191,13 +192,13 @@ public class GameUtil
             };
 
             newReward.CashCount = (int)Math.Ceiling(item.cash * GetGoldMulti());
-            // newReward.Type = item.type == "Cash" ? CommonRewardType.Cash : CommonRewardType.Coin;
-            // newReward.RewardNum = item.type == "Cash"
-            //     ? (int)Math.Ceiling(item.count * GetCashMulti())
-            //     : (int)Math.Ceiling(item.count * GetGoldMulti());
+            newReward.Type = item.type == "Cash" ? CommonRewardType.Cash : CommonRewardType.Coin;
+            newReward.RewardNum = item.type == "Cash"
+                ? (int)Math.Ceiling(item.count * GetCashMulti())
+                : (int)Math.Ceiling(item.count * GetGoldMulti());
 
-            newReward.Type = CommonRewardType.Coin;
-            newReward.RewardNum = (int)Math.Ceiling(item.count * GetGoldMulti());
+            // newReward.Type = CommonRewardType.Coin;
+            // newReward.RewardNum = (int)Math.Ceiling(item.count * GetGoldMulti());
             list.Add(newReward);
         }
 
@@ -212,37 +213,30 @@ public class GameUtil
     }
 
 
-    public static List<WheelBigItemReward> GetCollectRewardDataList()
+    public static List<SlotRewardData> GetCollectRewardDataList()
     {
-        List<WheelBigItemReward> list = new List<WheelBigItemReward>();
+        List<SlotRewardData> list = new List<SlotRewardData>();
         List<NetWeightData> sourceList = NetInfoMgr.instance.GameData.collect_weight_group;
         foreach (NetWeightData item in sourceList)
         {
-            WheelBigItemReward newReward = new WheelBigItemReward
+            SlotType slotType = StringUtil.ToEnum<SlotType>(item.type);
+
+            SlotRewardData newReward = new SlotRewardData
             {
-                Weight = item.weight
+                Weight = item.weight,
+                Type = slotType
             };
-            switch (item.type)
+
+            if (item.type.Contains("Coin"))
             {
-                case "Coin":
-                {
-                    newReward.Type = CommonRewardType.Coin;
-                    double netParam = item.count * GetGoldMulti();
-                    newReward.Count = Math.Ceiling(netParam);
-                    break;
-                }
-                // case "Cash":
-                // {
-                //     newReward.Type = CommonRewardType.Coin;
-                //     double netParam = item.count * GetGoldMulti();
-                //     newReward.Count = Math.Ceiling(netParam);
-                //     break;
-                // }
-                // default:
-                //     newReward.Type = CommonRewardType.Card;
-                //     newReward.Count = item.count;
-                //     newReward.CardId = int.Parse(item.type);
-                //     break;
+                double netParam = item.count * GetCoinMultiWithRandom();
+                newReward.Count = (int)Math.Ceiling(netParam);
+            }
+            else
+            {
+                decimal netParam =Convert.ToDecimal( item.count * GetCashMultiWithRandom());
+                // newReward.Count = (int)Math.Ceiling(netParam);
+                newReward.Count = decimal.Round(netParam,2);
             }
 
             list.Add(newReward);
@@ -252,38 +246,38 @@ public class GameUtil
     }
 
 
-    public static int GetCollectReward()
+    public static SlotRewardData GetCollectReward()
     {
-        List<WheelBigItemReward> list = GetCollectRewardDataList();
+        List<SlotRewardData> list = GetCollectRewardDataList();
         float maxWeight = 0;
-        foreach (WheelBigItemReward reward in list)
+        foreach (SlotRewardData reward in list)
         {
             maxWeight += reward.Weight;
         }
 
+        SlotRewardData targetReward = new SlotRewardData();
+
         float thisWeight = Random.Range(0, maxWeight);
-        double count = 0;
         float tempWeight = 0;
-        for (int i = 0; i < list.Count; i++)
+        foreach (var reward in list)
         {
-            WheelBigItemReward reward = list[i];
             tempWeight += reward.Weight;
             if (tempWeight >= thisWeight)
             {
-                count = reward.Count;
+                targetReward.Type = reward.Type;
+                targetReward.Count = reward.Count;
                 break;
             }
         }
-        return Mathf.CeilToInt(float.Parse(count.ToString()) );
+
+        return targetReward;
     }
 
-
-    public static double GetNewUserCashRewardNum()
+    
+    public static decimal GetFlyBoxReward()
     {
-        // float random = Random.Range((float)NetInfoMgr.instance.InitData.cash_random[0],
-        // (float)NetInfoMgr.instance.InitData.cash_random[1]);
-        // return 20f * (1 + random);
-        return 20f;
+        int flyBox =  NetInfoMgr.instance.GameData.fly_pop;
+        return Convert.ToDecimal(flyBox*GetCashMultiWithRandom());
     }
 
 
@@ -313,23 +307,39 @@ public class GameUtil
         return 1;
     }
 
+
+
+
     public static double GetGoldMulti()
     {
-        return GetMulti(RewardType.Gold, SaveDataManager.GetDouble(CConfig.sv_CumulativeGoldCoin),
-            NetInfoMgr.instance.InitData.gold_group);
+        return NetInfoMgr.instance.InitData.gold_group[0].multi;
+        // return GetMulti(RewardType.Gold, SaveDataManager.GetDouble(CConfig.sv_CumulativeGoldCoin),
+        //     NetInfoMgr.instance.InitData.gold_group);
+    }
+    
+    public static double GetCoinMultiWithRandom()
+    {
+        float random = Random.Range((float)NetInfoMgr.instance.InitData.cash_random[0],
+            (float)NetInfoMgr.instance.InitData.cash_random[1]);
+        return GetGoldMulti() * (1 + random);
     }
 
     public static double GetCashMulti()
     {
-        return GetMulti(RewardType.Cash, SaveDataManager.GetDouble(CConfig.sv_CumulativeCash),
-            NetInfoMgr.instance.InitData.cash_group);
+        return NetInfoMgr.instance.InitData.cash_group[0].multi;
+        // return GetMulti(RewardType.Cash, SaveDataManager.GetDouble(CConfig.sv_CumulativeCash),
+        //     NetInfoMgr.instance.InitData.cash_group);
     }
-
-
-    // public static double GetAmazonMulti()
-    // {
-    //     return GetMulti(RewardType.Amazon, SaveDataManager.GetDouble(CConfig.sv_CumulativeAmazon), NetInfoMgr.instance.InitData.amazon_group);
-    // }
+    
+    public static double GetCashMultiWithRandom()
+    {
+        float random = Random.Range((float)NetInfoMgr.instance.InitData.cash_random[0],
+            (float)NetInfoMgr.instance.InitData.cash_random[1]);
+        return GetCashMulti() * (1 + random);
+    }
+    
+    
+    
 }
 
 
@@ -349,6 +359,28 @@ public enum CommonRewardType
     Cash,
     Card,
     Goods,
+}
+
+
+public enum SlotType
+{
+    Cash01,
+    Cash02,
+    Cash03,
+    Coin01,
+    Coin02,
+    Coin03,
+    Big777
+}
+
+public enum PanelType
+{
+    Card,
+    Wheel,
+    Slot,
+    FlyBox,
+    Default
+    
 }
 
 
@@ -383,5 +415,20 @@ public class WinPanelData
 {
     public int CoinAmount;
 
-    public bool IsCard;
+    public decimal CashAmount;
+
+    public PanelType PanelType;
+    
+    public Sprite RewardSprite;
+        
 }
+
+public class SlotRewardData
+{
+    public SlotType Type;
+
+    public float Weight;
+
+    public decimal Count;
+}
+

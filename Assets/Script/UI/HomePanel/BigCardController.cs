@@ -46,7 +46,7 @@ public class BigCardController : MonoBehaviour
         _leftMainObj.transform.localPosition = new Vector3(-BigCardOffSet, 0, 1);
         _leftMainObj.transform.GetComponent<BigCard>().cardId = leftCardId;
         _leftMainObj.transform.GetComponent<BigCard>().cardType = LocalCardData.CardTypeDict[leftCardId];
-        _leftMainObj.transform.GetComponent<BigCard>().PostDeed();
+        _leftMainObj.transform.GetComponent<BigCard>().LintIraq();
         _leftMainObj.gameObject.SetActive(true);
 
 
@@ -56,7 +56,7 @@ public class BigCardController : MonoBehaviour
         _middleMainObj.transform.GetComponent<BigCard>().cardId = LocalCommonData.CurrentCardId;
         _middleMainObj.transform.GetComponent<BigCard>().cardType =
             LocalCardData.CardTypeDict[LocalCommonData.CurrentCardId];
-        _middleMainObj.transform.GetComponent<BigCard>().PostDeed();
+        _middleMainObj.transform.GetComponent<BigCard>().LintIraq();
         _middleMainObj.gameObject.SetActive(true);
 
 
@@ -66,7 +66,7 @@ public class BigCardController : MonoBehaviour
         _rightMainObj.transform.localPosition = new Vector3(BigCardOffSet, 0, 1);
         _rightMainObj.transform.GetComponent<BigCard>().cardId = rightId;
         _rightMainObj.transform.GetComponent<BigCard>().cardType = LocalCardData.CardTypeDict[rightId];
-        _rightMainObj.transform.GetComponent<BigCard>().PostDeed();
+        _rightMainObj.transform.GetComponent<BigCard>().LintIraq();
         _rightMainObj.gameObject.SetActive(true);
 
         DoScaleAct();
@@ -86,7 +86,7 @@ public class BigCardController : MonoBehaviour
 
         newMainCard.transform.GetComponent<BigCard>().cardId = nextId;
         newMainCard.transform.GetComponent<BigCard>().cardType = LocalCardData.CardTypeDict[nextId];
-        newMainCard.transform.GetComponent<BigCard>().PostDeed();
+        newMainCard.transform.GetComponent<BigCard>().LintIraq();
 
         newMainCard.gameObject.SetActive(true);
 
@@ -139,17 +139,17 @@ public class BigCardController : MonoBehaviour
 
         _leftMainObj.transform.GetComponent<BigCard>().cardId = leftCardId;
         _leftMainObj.transform.GetComponent<BigCard>().cardType = LocalCardData.CardTypeDict[leftCardId];
-        _leftMainObj.transform.GetComponent<BigCard>().PostDeed();
+        _leftMainObj.transform.GetComponent<BigCard>().LintIraq();
 
         _middleMainObj.transform.GetComponent<BigCard>().cardId = LocalCommonData.CurrentCardId;
         _middleMainObj.transform.GetComponent<BigCard>().cardType =
             LocalCardData.CardTypeDict[LocalCommonData.CurrentCardId];
-        _middleMainObj.transform.GetComponent<BigCard>().PostDeed();
+        _middleMainObj.transform.GetComponent<BigCard>().LintIraq();
 
         int rightId = GetNextCardId(false);
         _rightMainObj.transform.GetComponent<BigCard>().cardId = rightId;
         _rightMainObj.transform.GetComponent<BigCard>().cardType = LocalCardData.CardTypeDict[rightId];
-        _rightMainObj.transform.GetComponent<BigCard>().PostDeed();
+        _rightMainObj.transform.GetComponent<BigCard>().LintIraq();
     }
 
     public void CardsDoMove(float offsetX)
@@ -213,7 +213,7 @@ public class BigCardController : MonoBehaviour
 
     private int GetNextCardId(bool isLeft = true)
     {
-        int nextIdx = TameMagic.Instance.GetNextCardIdx(isLeft);
+        int nextIdx = ParkScope.Instance.GetNextCardIdx(isLeft);
         int nextId = LocalCardData.ActCardIds[nextIdx];
         return nextId;
     }

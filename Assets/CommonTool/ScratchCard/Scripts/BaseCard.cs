@@ -15,6 +15,7 @@ using Spine;
 using Spine.Unity;
 using UnityEngine;
 using UnityEngine.U2D;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class BaseCard : MonoBehaviour
@@ -32,6 +33,8 @@ public class BaseCard : MonoBehaviour
     public int cardId;
 
     public CardType cardType;
+
+    public Text costText;
 
     // card item on sprint 
     public SpriteAtlas baseItemOnAtlas;
@@ -111,7 +114,7 @@ public class BaseCard : MonoBehaviour
     {
         LocalCommonData.IsGamePass = true;
 
-        SkinMagic.Instance.HoldTimerEnd();
+        FishScope.Instance.HoldTimerEnd();
 
         _mainCardFlag = true;
         mainCard.FillScratchCard();
@@ -174,86 +177,28 @@ public class BaseCard : MonoBehaviour
         }
     }
 
-
-    // protected List<int> GetActiveGoodIdx()
-    // {
-    //     List<int> actList = new List<int>();
-    //     List<int> usedIdx = GameDataManager.GetInstance().GetGoods();
-    //
-    //     for (int i = 0; i < GoodsLimit; i++)
-    //     {
-    //         if (!usedIdx.Contains(i))
-    //         {
-    //             actList.Add(i);
-    //         }
-    //     }
-    //
-    //     return actList;
-    // }
-
-    // private int GetTargetGoodIdx()
-    // {
-    //     if (ActiveGoodIdx.Count <= 0) return -1;
-    //     int num = Random.Range(0, ActiveGoodIdx.Count);
-    //     int idx = ActiveGoodIdx[num];
-    //     PrepareGoodIdx.Add(idx);
-    //     ActiveGoodIdx.Remove(idx);
-    //     return idx;
-    // }
-
-
-    // private BaseRewardItemData GetOnceRewardData()
-    // {
-    //     LocalCardWeight rewardData = GameUtil.GetLocalRewardWeight();
-    //
-    //     while (rewardData.Type == CardRewardType.Goods && ActiveGoodIdx.Count == 0)
-    //     {
-    //         rewardData = GameUtil.GetLocalRewardWeight();
-    //     }
-    //
-    //     return RewardToItemData(rewardData);
-    // }
+   
 
 
     //  set sprite to  reward
     private BaseRewardItemData RewardSetSprite(BaseRewardItemData rewardData)
     {
-        // if (rewardData.Type == CommonRewardType.Goods)
-        // {
-        // rewardData.RewardSprite = RewardSpriteDict[];
-        // }
-        // else
-        // {
-        rewardData.RewardSprite = RewardSpriteDict[rewardData.Type.ToString()];
-        // }
+        rewardData.RewardSprite = rewardData.Type == CommonRewardType.Goods ? RewardSpriteDict[rewardData.CollectType.ToString()] : RewardSpriteDict[rewardData.Type.ToString()];
 
         return rewardData;
     }
 
 
-    // get new user first reward
-    // protected BaseRewardItemData GetNewUserReward()
-    // {
-    //     BaseRewardItemData rewardData = new BaseRewardItemData
-    //     {
-    //         IsThanks = false,
-    //         Type = CommonRewardType.Cash,
-    //         RewardSprite = RewardSpriteDict["Cash"],
-    //         Amount = (int)Math.Ceiling(GameUtil.GetNewUserCashRewardNum())
-    //     };
-    //     return rewardData;
-    // }
 
     protected BaseRewardItemData GetNewUserReward()
     {
-        
-        int  firstCoin = NetInfoMgr.instance.GameData.first_coin;
-        
+        int firstCoin = NetInfoMgr.instance.GameData.first_coin;
+
         BaseRewardItemData rewardData = new BaseRewardItemData
         {
             IsThanks = false,
-            Type = CommonRewardType.Coin,
-            RewardSprite = RewardSpriteDict["Coin"],
+            Type = CommonRewardType.Cash,
+            RewardSprite = RewardSpriteDict["Cash"],
             Amount = firstCoin,
         };
         return rewardData;
@@ -289,17 +234,18 @@ public class BaseCard : MonoBehaviour
 
     private BaseRewardItemData SetCollectIdx(BaseRewardItemData rewardData)
     {
+        // TODO
         if (!rewardData.IsThanks && rewardData.Type == CommonRewardType.Goods)
         {
-            if (PreCollectCount < CollectManager.Instance.GetActiveCollectCount())
-            {
-                rewardData.GoodsIdx = PreCollectCount;
-                PreCollectCount++;
-            }
-            else
-            {
-                rewardData = CardManager.Instance.GetSureRewardWithOutGoods();
-            }
+            // if (PreCollectCount < CollectManager.Instance.GetActiveCollectCount())
+            // {
+            //     rewardData.GoodsIdx = PreCollectCount;
+            //     PreCollectCount++;
+            // }
+            // else
+            // {
+            //     rewardData = CardManager.Instance.GetSureRewardWithOutGoods();
+            // }
         }
 
         return rewardData;
@@ -447,6 +393,8 @@ public class BaseCard : MonoBehaviour
         BaseAnimItemList = new List<GameObject>();
         BaseRewardDataList = new List<BaseRewardItemData>();
         InitSprite();
+        costText.text =  LocalCardData.CardParamDict[ LocalCommonData.CurrentCardId].CardCost + ""; 
+
         checkSpineObj.gameObject.SetActive(false);
         _checkSpineSkeleton = checkSpineObj.GetComponent<SkeletonGraphic>();
         _boardSpineSkeleton = boardSpineObj.GetComponent<SkeletonGraphic>();
@@ -516,7 +464,7 @@ public class BaseCard : MonoBehaviour
 
     public void ShowComplete()
     {
-        SkinMagic.Instance.DoFinishAnimAndShowCompletePanel();
+        FishScope.Instance.DoFinishAnimAndShowCompletePanel();
     }
 
 
@@ -543,23 +491,19 @@ public class BaseCard : MonoBehaviour
     private void InitCardSpecial()
     {
         IsSpecialCard = CardManager.Instance.CheckIsSuperCard();
-
     }
 
     protected async void DoBoardAct()
     {
-        
-
         _boardSpineSkeleton.Initialize(true);
         boardSpineObj.gameObject.SetActive(true);
         _boardSpineSkeleton.AnimationState.SetEmptyAnimation(0, 0);
         _boardSpineSkeleton.GetComponent<SkeletonGraphic>().AnimationState.SetAnimation(0, "animation", true);
 
         await UniTask.Delay(400);
-        
-        // HapticPatterns.PlayPreset(HapticPatterns.PresetType.Success);
-        HapticPatterns.PlayConstant(0.6f,0.6f,0.3f);
-        
+
+        HapticPatterns.PlayConstant(0.6f, 0.6f, 0.3f);
+
         superSpineObj.gameObject.SetActive(true);
         _superSpineSkeleton.Initialize(true);
         _superSpineSkeleton.AnimationState.Complete += ShowSuperFinish;
